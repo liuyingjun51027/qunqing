@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<view class="main">
+  <view wx:if="{{canIUseGetUserProfile}}" hover-class="sc" class="item item1" wx:for="{{qunqing}}" wx:key="*this">
+
+    <image data-lj='{{dhlj[index]}}' bindtap='goto' src="{{item}}" class="item item1"></image>
+
+  </view>
+</view>
+
+<view class="container">
+<!--   <view>{{session_key}}</view>
+  <navigator url="../user/user" hover-class="navigator-hover">会员中心</navigator> -->
+
+
+  <view class="container">
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+</view>
+ <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>

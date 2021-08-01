@@ -1,0 +1,2 @@
+/* pages/myspgl/myspgl.wxss */
+@import '../../user/user.wxss'; 

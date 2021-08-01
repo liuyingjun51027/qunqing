@@ -1,0 +1,40 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+
+
+page {
+  height: 100%;
+}
+button::after{
+  border: none;
+}
+.warp button {
+  width: 100%;
+  height:100%;
+  position: absolute;
+  border-radius:0px 0px 0px 0px;
+  color: transparent;
+  background:transparent no-repeat center center;
+  background-size: cover;   
+  background-image: url('https://1681.qunqing168.com/1.jpg');
+}

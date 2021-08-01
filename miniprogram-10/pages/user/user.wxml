@@ -1,0 +1,158 @@
+<scroll-view scroll-y style='height:100vh;'>
+  <view class="main">
+    <text class="gwc-icon-num" wx:if="{{totalNum}}">{{totalNum}}</text>
+    <view hover-class="sc" class="item item1" wx:for="{{qunqing}}" wx:key="*this">
+      <image data-lj="{{dhlj[index]}}" bindtap='goto' src="{{item}}" class="item item1"></image>
+    </view>
+  </view>
+  <view class='top'>
+
+    <view>
+
+
+      <view class='img'>
+        <image src="https://1681.qunqing168.com{{hymember['userpic']}}" class='img'></image>
+      </view>
+      <view class='text'>
+        <open-data type="userNickName"></open-data>
+
+      </view>
+
+
+    </view>
+  </view>
+  <view class='itemm'>
+    <view class='left'>
+      <text data-lj="/pages/order/order?type=0&userid={{hymember['userid']}}&username={{hymember['username']}}"
+        bindtap='goto' class=''>我的订单</text>
+    </view>
+    <view class='right'>
+      <view data-lj="/pages/order/order?type=0&userid={{hymember['userid']}}&username={{hymember['username']}}"
+        bindtap='goto' hover-class="none">
+        <text>查看全部订单</text>
+        <image src='/image/my_order.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='icon'>
+    <view data-lj="/pages/order/order?type=1&userid={{hymember['userid']}}&username={{hymember['username']}}"
+      bindtap='goto' hover-class="none">
+      <image src='../../image/pending_payment.png' mode="aspectFit"></image>
+      <text>待付款</text>
+    </view>
+    <view data-lj="/pages/order/order?type=2&userid={{hymember['userid']}}&username={{hymember['username']}}"
+      bindtap='goto' hover-class="none">
+      <image src='../../image/pending_delivery.png' mode="aspectFit"></image>
+      <text>待发货</text>
+    </view>
+    <view data-lj="/pages/order/order?type=3&userid={{hymember['userid']}}&username={{hymember['username']}}"
+      bindtap='goto' hover-class="none">
+      <image src='../../image/already_shipped.png' mode="aspectFit"></image>
+      <text>已发货</text>
+    </view>
+    <view data-lj="/pages/order/order?type=4&userid={{hymember['userid']}}&username={{hymember['username']}}"
+      bindtap='goto' hover-class="none">
+      <image src='../../image/completed.png' mode="aspectFit"></image>
+      <text>已完成</text>
+    </view>
+  </view>
+  <block wx:if="{{sfsj}}">
+    <view class='itemm'>
+      <view class='left'>
+        <view data-lj="/pages/glorder/glorder?type=0&userid={{hymember['userid']}}&username={{hymember['username']}}"
+          bindtap='goto' class=''>管理订单</view>
+      </view>
+      <view class='right'>
+        <view data-lj="/pages/glorder/glorder?type=0&userid={{hymember['userid']}}&username={{hymember['username']}}"
+          bindtap='goto' hover-class="none">
+          <text>查看全部订单</text>
+          <image src='/image/my_order.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class='icon'>
+      <view data-lj="/pages/glorder/glorder?type=1&userid={{hymember['userid']}}&username={{hymember['username']}}"
+        bindtap='goto' hover-class="none">
+        <image src='../../image/pending_payment.png' mode="aspectFit"></image>
+        <text>待付款</text>
+      </view>
+      <view data-lj="/pages/glorder/glorder?type=2&userid={{hymember['userid']}}&username={{hymember['username']}}"
+        bindtap='goto' hover-class="none">
+        <image src='../../image/pending_delivery.png' mode="aspectFit"></image>
+        <text>待发货</text>
+      </view>
+      <view data-lj="/pages/glorder/glorder?type=3&userid={{hymember['userid']}}&username={{hymember['username']}}"
+        bindtap='goto' hover-class="none">
+        <image src='../../image/already_shipped.png' mode="aspectFit"></image>
+        <text>已发货</text>
+      </view>
+      <view data-lj="/pages/glorder/glorder?type=4&userid={{hymember['userid']}}&username={{hymember['username']}}"
+        bindtap='goto' hover-class="none">
+        <image src='../../image/completed.png' mode="aspectFit"></image>
+        <text>已完成</text>
+      </view>
+    </view>
+    <view data-lj="/pages/coupon/coupon" bindtap='goto' class='itemm'>
+      <view class='left'>
+        商家管理中心 
+      </view>
+      <view class='right'>
+        <image src='../../image/my_order.png'></image>
+      </view>
+    </view>
+    <view data-lj="../gz/gl/gl" bindtap='goto' class='itemm'>
+      <view class='left'>
+        工作相关
+      </view>
+      <view class='right'>
+        <image src='../../image/my_order.png'></image>
+      </view>
+    </view>
+  </block>
+  <view data-lj="/pages/coupon/index" bindtap='goto' class='itemm'>
+    <view class='left'>
+      我的钱包
+    </view>
+    <view class='right'>
+      <image src='../../image/my_order.png'></image>
+    </view>
+  </view>
+  <view data-lj="/pages/coupon/index" bindtap='goto' class='itemm'>
+    <view class='left'>
+      我的优惠券
+    </view>
+    <view class='right'>
+      <image src='../../image/my_order.png'></image>
+    </view>
+  </view>
+  <view data-lj="/pages/addressList/index" bindtap='goto' class='itemm'>
+    <view class='left'>
+      地址管理
+    </view>
+    <view class='right'>
+      <image src='../../image/my_order.png'></image>
+    </view>
+  </view>
+</scroll-view>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <image src="{{usertx}}" />
+
+<view wx:for="{{hymember}}" wx:key="id">{{index}}:{{item}}</view>
+<view>{{hymember['userid']}}{{hymember['username']}}</view>
+这里是 会员中心
+
+<view class="container" style="height:{{editorHeight}}px;">
+  <editor id="editor" class="ql-container" placeholder="{{placeholder}}" bindstatuschange="onStatusChange"
+    bindready="onEditorReady">
+    22222222222222222222</editor>
+</view> -->

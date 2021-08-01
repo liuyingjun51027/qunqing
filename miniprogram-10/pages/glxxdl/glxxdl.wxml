@@ -1,0 +1,87 @@
+<scroll-view scroll-x>
+  <view class='tab'>
+    <view data-lj="../zjxx/zjxx?lmid={{classid}}&fclassid={{fclassid}}&fid={{fid}}&lmmc={{lmmc}}" bindtap='goto'
+      hover-class="none">
+      <text>添加商品</text>
+    </view>
+    <view>
+      <view data-lj="../glxx/glxx?lmid={{classid}}&fclassid={{fclassid}}&fid={{fid}}&lmmc={{lmmc}}" bindtap='goto'
+        hover-class="none">
+        <text>管理商品</text>
+      </view>
+    </view>
+    <view>
+      <text class='active'>代理管理</text>
+    </view>
+    <view data-dpsjhym="{{hymember['username']}}" bindtap='sjdp' hover-class="none">
+      <text>我的店铺</text>
+    </view>
+  </view>
+
+</scroll-view>
+
+<scroll-view class="scroll_view" style="margin-bottom:50px;" scroll-y bindscrolltolower="nextPage"
+  bindscrolltoupper="onePage" scroll-top='{{topNum}}' bindscroll="scrolltoupper">
+  <!-----触底触发事件----->
+
+
+  <!---回到顶部---->
+  <image src='https://www.qunqing168.com/skin/default/images/sy-up.jpg' class='goTop' hidden='{{!floorstatus}}'
+    bindtap="goTop"></image>
+  <view class="content">
+    <view wx:if="{{page==0}}">您还没有可以管理的信息{{classid}} 没有调出商品信息的原因 有可能是因为 代理分钱为空 或 0</view>
+    <block wx:for="{{list}}" wx:for-item="lisdata" wx:for-index="index" wx:key="index">
+
+      <view wx:for="{{lisdata}}" class="itemx" wx:for-index="idx" wx:for-item="Name" wx:key="idx">
+
+        <view style="width:100%;display:flex;flex-direction:row;">
+
+          <view style="width:100px;height:100px; position:relative;float:left;">
+            <image wx:if="{{idx!==videoidx}}" mode="aspectFill" src="https://1681.qunqing168.com{{Name['titlepic']}}"
+              style="z-index:-1;position:absolute;float:left;width:100px;height:100px;" />
+          </view>
+          <view style="width:{{sysWidth-120}}px; position:relative;float:left;margin-left:20px;">
+
+
+
+            <!--  //省  市   区 乡镇 会员id和会员名  掌柜姓名       标图 联系手机 店铺名称位置 代理总数 已代理 还可代理 代理数量 信誉额度
+$zd=",,,xz,userid,username,title,newstime,titlepic,lxsj,dpmc,dpwz,dlzsl ydl hkdl dlsl xyed"; -->
+            <view style='color:blue;'>{{Name['title']}}【{{Name['dpmc']}}】</view>
+            <view>{{Name.newstime}}</view>
+            <!-- <view>{{index}}--{{idx}}{{fid}}</view> -->
+            <view>栏目：{{Name.classid}}id：{{Name['id']}} {{Name['dlsl']}}</view>
+            <view>信誉额度:{{Name['xyed']}}</view>
+            <view>{{Name['pro']}} {{Name['city']}} {{Name['area']}}</view>
+            <!-- <view>代理 总数{{Name['dlzsl']}} 已代理{{Name['ydl']}} 还可代理{{Name['hkdl']}} 代理数量{{Name['dlsl']}}</view> -->
+            <view>拥有自营商品{{Name['num']}}</view>
+          </view>
+
+        </view>
+        <view class="topborder">
+              <!-- <text class="flex-item2 ">总数{{dlxgxx['dlzsl']}} 已代理{{dlxgxx['ydl']}} 还可代理{{dlxgxx['hkdl']}}代理数量{{dlxgxx['dlsl']}}</text> -->
+              <block wx:if="{{dlxgxx['ydl']*1 <dlxgxx['dlzsl']*1}}">
+                <text wx:if="{{Name['num']-Name['num2']}}" class="flex-item3"
+                  data-lj="../wydl/wydl?lmid={{classid}}&fclassid={{Name.classid}}&fid={{Name['id']}}&myfid={{fid}}&lmmc={{lmmc}}&title={{Name['title']}}&dpmc={{Name['dpmc']}}&userid={{Name['userid']}}&username={{Name['username']}}&spdlxe={{Name['dlsl']}}&x=1"
+                  bindtap='goto'>可代理({{Name['num3']}})</text>
+              </block>
+              <block wx:else>
+                <text class="flex-item3 redsc"  data-tishi="超限 限额为{{dlxgxx['dlzsl']}}"  bindtap='tishi'>代理已超限</text>
+              </block>
+              <text wx:if="{{Name['num2']}}" class="flex-item3"
+                data-lj="../wydl/wydl?lmid={{classid}}&fclassid={{Name.classid}}&fid={{Name['id']}}&myfid={{fid}}&lmmc={{lmmc}}&title={{Name['title']}}&dpmc={{Name['dpmc']}}&userid={{Name['userid']}}&username={{Name['username']}}&spdlxe={{Name['dlsl']}}&x=2"
+                bindtap='goto'>已代理({{Name['num2']}})</text>
+
+        </view>
+      </view>
+
+    </block>
+
+  </view>
+</scroll-view>
+
+<view class="main">
+  <text class="gwc-icon-num" wx:if="{{totalNum}}">{{totalNum}}</text>
+  <view hover-class="sc" class="item item1" wx:for="{{qunqing}}" wx:key="*this">
+    <image data-lj='{{dhlj[index]}}' bindtap='goto' src="{{item}}" class="item item1"></image>
+  </view>
+</view>

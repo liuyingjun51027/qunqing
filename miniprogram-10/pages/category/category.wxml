@@ -1,0 +1,64 @@
+<!--pages/category/category.wxml-->
+
+<view class="main">
+    <view class="custom-bar" style="height:{{navHeight}}px;">
+        <!----顶端搜索框实现代码-->
+        <view class="search-group2" style="margin-top:{{searchMarginTop}}px; height: {{searchHeight}}px;width:65px;box-sizing: border-box;" data-lj='../index/index' bindtap='goto'>
+            <image src="/image/fh.png" />
+        </view>
+
+        <navigator data-lj="../search/search" bindtap='goto' style="width: {{searchWidth-60}}px;">
+            <view class="search-group"
+                style="margin-top:{{searchMarginTop}}px; height: {{searchHeight}}px;width: {{searchWidth-70}}px;box-sizing: border-box;">
+
+                <icon class="search-icon" type="search" size="14"></icon>搜 索
+            </view>
+        </navigator>
+    </view>
+
+    <!-----左边大类---->
+    <scroll-view class="categroy-left" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}"
+        scroll-with-animation="true"  style="margin-top:250rpx;">
+        <!-- <view class="categroy-left"> -->
+        <view wx:for="{{category}}" wx:key="index" data-id="{{item.mid}}" data-index="{{index}}" bindtap="switchTab"
+            class="cate-list {{curIndex === index?'on':''}}">{{item.name}}</view>
+
+
+        <!-- </view> -->
+    </scroll-view>
+
+<scroll-view class="categroy-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}"
+        scroll-with-animation="true"  style="margin-top:250rpx;">
+        <block wx:for="{{detail}}" wx:for-index wx:key="idx">
+            <view id="{{item.mid}}" class="cate-box">
+                <navigator data-lj="../categorylist/categorylist?lmid={{item.id}}" bindtap='goto'>
+                            
+                <!-- <view class="cate-banner">
+                    <image src="https://1681.qunqing168.com{{item.banner}}"></image>
+                </view> -->
+                <view class="cate-title">
+                    <text>{{item.cate}}</text>
+                </view>
+            </navigator>
+                <view class="product">
+                    <block wx:for="{{item.detail}}" wx:key="index" wx:for-item="val">
+                        <view class="product-list" wx:for="{{val}}" wx:key="*this">
+
+                            <navigator data-lj="../categorylist/categorylist?id={{item.lmid}}" bindtap='goto'>
+                                <image src="https://1681.qunqing168.com{{item.titlepic}}"></image>
+                                <view class="classname"><text>{{item.lmmc}}</text></view>
+                            </navigator>
+                        </view>
+                    </block>
+                </view>
+
+
+
+            </view> 
+        </block>
+
+    </scroll-view>
+<!--右边的---->
+</view>
+
+

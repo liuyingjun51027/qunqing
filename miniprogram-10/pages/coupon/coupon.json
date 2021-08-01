@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "增加信息",
+  "backgroundColor": "#eeeeee",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom"
+}

@@ -1,0 +1,113 @@
+<!--pages/order/order.wxml-->
+<view class='mainn'>
+  <scroll-view scroll-x>
+    <view class='tab'>
+      <view bindtap='tabFun' data-index="{{0}}">
+        <text class='{{tabIndex==0?"active":""}}'>全 部</text>
+      </view>
+      <view bindtap='tabFun' data-index="{{1}}">
+        <text class='{{tabIndex==1?"active":""}}'>待付款</text>
+      </view>
+      <view bindtap='tabFun' data-index="2">
+        <text class='{{tabIndex==2?"active":""}}'>待发货</text>
+      </view>
+      <view bindtap='tabFun' data-index="3">
+        <text class='{{tabIndex==3?"active":""}}'>待确定</text>
+      </view>
+      <view bindtap='tabFun' data-index="4">
+        <text class='{{tabIndex==4?"active":""}}'>已完成</text>
+      </view>
+      <view bindtap='tabFun' data-index="5">
+        <text class='{{tabIndex==5?"active":""}}'>待好评</text>
+      </view>
+      <view bindtap='tabFun' data-index="6">
+        <text class='{{tabIndex==6?"active":""}}'>已好评</text>
+      </view>
+      <view bindtap='tabFun' data-index="7">
+        <text class='{{tabIndex==7?"active":""}}'>有图</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <scroll-view scroll-y class='list borr'>
+    <view wx:for="{{list}}" wx:key="index" wx:for-item="item">
+      <view class='price'> 订单：{{item['ddno']}}订单id{{item['ddid']}}</view>
+      <view class='price'>
+        <text>卖家： {{item['maijia']}}</text>
+        <text>¥{{item.alltotal}}</text>
+      </view>
+      <block wx:for="{{item['listxq']}}" wx:key="index" wx:for-item="item">
+        <image bindtap="details" data-classid="{{item['lmid']}}" data-id="{{item['lmzid']}}" data-dpsjhym="{{item['dpsjhym']}}" data-dldp="{{item['dldp']}}" src="https://1681.qunqing168.com{{item['titlepic']}}" style="width:100rpx;height:100rpx;"></image>
+      </block>
+      <view class='text'>
+        <view>
+<text decode="{{true}}" style="color:{{item['haveprice']==1?'#cccccc':'red'}}">{{item['haveprice']==1?'已支付':'未支付'}}&nbsp; </text>
+<text decode="{{true}}" style="color:{{item['outproduct']==1?'#cccccc':'red'}}">{{item['outproduct']==1?'已发货':'未发货'}}&nbsp;</text>
+<text decode="{{true}}" style="color:{{item['checkedd']==1?'#cccccc':'red'}}">{{item['checkedd']==1?'已确认':'未确认'}}&nbsp;</text>
+<text decode="{{true}}" style="color:{{item['hpxs']==1?'#cccccc':'red'}}">{{item['hpxs']==1?'已好评':'未好评'}}</text>
+       </view>
+        <view class='title'>{{item['title']}}</view>
+        <view class='spec'>联系电话：{{item.g_phone}}</view>
+        <view class='spec'>地址：{{item.g_address}}</view>
+
+        <view wx:if="{{pinlun[index]['mjcp']}}">买家初评:{{pinlun[index]['mjcp']}}</view>
+        <view wx:if="{{pinlun[index]['sjzp']}}">商家追评:{{pinlun[index]['sjzp']}}</view>
+        <view wx:if="{{item['ksfyt']==1}}" style="height:auto;display: flex;padding:0 10rpx;">
+          <view
+            style="width:100rpx;height:100rpx;margin:2rpx;justify-content: center;display: flex;line-height: 100rpx;">
+            <text>买家图:</text></view>
+          <view wx:for="{{pic[index]['kft']}}">
+            <image wx:if="{{item['kpic1']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+              src="https://1681.qunqing168.com{{item['kpic1']}}" />
+            <image wx:if="{{item['kpic2']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+              src="https://1681.qunqing168.com{{item['kpic2']}}" />
+            <image wx:if="{{item['kpic3']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+              src="https://1681.qunqing168.com{{item['kpic3']}}" />
+            <image wx:if="{{item['kpic4']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+              src="https://1681.qunqing168.com{{item['kpic4']}}" />
+            <image wx:if="{{item['kpic5']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+              src="https://1681.qunqing168.com{{item['kpic5']}}" />
+          </view>
+        </view>
+        <view wx:if="{{item['ssfyt']==1}}" style="height:auto;display: flex;padding:0 10rpx;">
+          <view
+            style="width:100rpx;height:100rpx;margin:2rpx;justify-content: center;display: flex;line-height: 100rpx;">
+            商家图:</view>
+          <view wx:for="{{pic[index]['sft']}}">
+            <image wx:if="{{item['kpic1']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+              src="https://1681.qunqing168.com{{item['kpic1']}}" />
+            <image wx:if="{{item['kpic2']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+              src="https://1681.qunqing168.com{{item['kpic2']}}" />
+            <image wx:if="{{item['kpic3']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+              src="https://1681.qunqing168.com{{item['kpic3']}}" />
+            <image wx:if="{{item['kpic4']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+              src="https://1681.qunqing168.com{{item['kpic4']}}" />
+            <image wx:if="{{item['kpic5']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+              src="https://1681.qunqing168.com{{item['kpic5']}}" />
+          </view>
+        </view>
+
+        <view>{{item['newstime']}}</view>
+        <view style="width:100%;height:1px;background:green"></view>
+      </view>
+    </view>
+  </scroll-view>
+
+</view>
+<view wx:if="{{list2['total']}}" class="flex-itemm bj">
+  <view wx:if="{{list2['total']>12}}" class="flex-itemm">
+    <view class="mini-btt">{{list2['total']}}</view>
+    <view class="mini-btt" style="{{list2['page']>1?'':'color:#ffffff'}};" bindtap="{{list2['page']>1?'getList2':''}}"
+      data-index='1' data-total="{{list2['total']}}" data-page="2" data-maijia="{{list2['username']}}">首页</view>
+    <view class="mini-btt" style="{{list2['page']>1?'':'color:#ffffff'}};" bindtap="{{list2['page']>1?'getList2':''}}"
+      data-total="{{list2['total']}}" data-page="{{list2['page']}}" data-index='1' data-maijia="{{list2['username']}}">
+      上1页</view>
+    <view class="mini-btt">{{list2['page']}}</view>
+    <view class="mini-btt" style="{{list2['total']/12>list2['page']?'':'color:#ffffff'}};"
+      bindtap="{{list2['total']/12>list2['page']?'getList2':''}}" data-total="{{list2['total']}}"
+      data-page="{{list2['page']}}" data-index='2' data-maijia="{{list2['username']}}">下1页</view>
+    <view class="mini-btt" bindtap="getList2" data-total="{{list2['total']}}" data-page="{{list2['page']}}"
+      data-index='3' data-maijia="{{list2['username']}}">随机
+    </view>
+  </view>
+</view>

@@ -1,0 +1,74 @@
+/**app.wxss**/
+page{
+  font-size: 28rpx;
+}
+
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+  font: size 28rpx;
+}
+
+/*组件六张图片css*/
+.main {
+  display: flex;
+  flex-direction:wro; 
+  justify-content:space-between;
+  align-items:center;
+  width: 100%;
+  background-color: #fff;
+  position:fixed;
+	bottom:0px;
+}
+
+.item {
+  display: flex;
+  justify-content:center;
+  justify-content:space-around;
+
+
+  height: 100rpx;
+  width: 100rpx;
+}
+
+.item1 {
+  background-color:#fff;
+}
+
+.item2 {
+  background-color: dodgerblue;
+}
+
+.item3 {
+  background-color: greenyellow;
+}
+.sc{
+  border:1px solid red;
+}
+
+/**购物车上面的数字**/
+.gwc-icon-num{
+
+    position:absolute;
+   float: left;  
+   left: 53%; 
+   margin-top: -35rpx;  
+   width: 40rpx;
+   height: 40rpx;
+   line-height: 40rpx;
+   border-radius: 50%;
+   background: red;
+   color: #fff;
+   font-size: 24rpx;
+   z-index: 12;
+   text-align: center;
+}
+
+
+

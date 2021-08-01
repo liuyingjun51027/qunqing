@@ -1,0 +1,89 @@
+<!--pages/fx/fx.wxml-->
+<view style="width:{{sysWidth}}px;height:{{sysWidth*75/100}}px;">
+  <image src="https://1681.qunqing168.com/1.jpg" style="width:{{sysWidth}}px;height:{{sysWidth*75/100}}px;" />
+</view>
+<view class="mainxx" style="height:50px;">
+  <text class="mainx"
+    style="width:auto;right:15px;top:-35px;color:#ffffff;font-size:35rpx;font-family:Microsoft YaHei;">11111{{hymember['username']}}</text>
+  <image class="mainx" bindtap='myfx' src="https://1681.qunqing168.com/1.jpg"
+    style="width:50px;height:50px;top:-25px;right:15px;background-color: #fff;" />
+</view>
+
+<view class="main">
+
+  <view hover-class="sc" class="item item1" wx:for="{{qunqing}}" wx:key="index">
+    <image data-lj='{{dhlj[index]}}' bindtap='goto' src="{{item}}" class="item item1"></image>
+  </view>
+</view>
+
+<!-- <button bindtap='shangchuan'>上 传</button> -->
+<view class="content">
+<!--   <view style='display: flex; justify-content:space-between;'>
+    <button style="width:25%">取 消</button>
+    <view style="width:45%;height:auto;bottom:25px;"></view>
+    <button style="width:25%; color:green;" form-type="submit"> 提交 </button>
+  </view> -->
+  <view style="width:100%;display:flex;flex-direction:row;">
+  <view style="width:60px;height:60px; position:relative;float:left;">
+    今天
+  </view>
+  <view style="width:{{sysWidth-80}}px; position:relative;float:left;">
+
+    <view>
+      <image bindtap='shangchuan' data-index="1" src="https://1681.qunqing168.com/d/cn/tjtp30.gif" mode="aspectFill"
+        style="width:50px;height:50px;margin-right:10px;"></image>
+      <image bindtap='shangchuan'  data-index="2" src="https://1681.qunqing168.com/1.jpg" mode="aspectFill"
+        style="width:50px;height:50px;margin-right:10px;"></image>
+    </view>
+  </view>
+</view>
+  <view wx:for="{{list}}" class="itemx" wx:for-index="idx" wx:for-item="Name" wx:key="idx">
+    <view style="width:100%;display:flex;flex-direction:row;">
+      <view style="width:60px;height:60px; position:relative;float:left;">
+        <!--  <text wx:if="{{Name.newstime[0]}}">{{Name.newstime[0]+"/"+Name.newstime[1]}}</text> -->
+        <text>{{Name.newstime}}</text>
+      </view>
+      <view style="width:{{sysWidth-80}}px; position:relative;float:left;">
+        <view style='color:blue;'>{{Name['title']}}</view>
+        <view class='{{Name.xs2?"note2_item":"note3_item"}}'>
+
+          <text data-id='{{idx}}' id='c{{idx}}' bindtap='textgao' class='note_item'
+            user-select='true'>{{Name.xq}}</text>
+
+        </view>
+        <view><text wx:if='{{Name.xs}}' style="color:blue;" data-id='{{idx}}' id='v{{idx}}'
+            bindtap='{{Name.xs2?"sq":"zk"}}'>{{Name.xs2?"收起":"全文"}}</text></view>
+
+        <block wx:if="{{Name['video']}}">
+          {{Name.pic[0]}}
+          <image  src="https://1681.qunqing168.com{{Name.pic[0]}}"
+            mode="aspectFill"
+            style="width:{{(Name.num==1?(sysWidth-80)/1.5:(Name.num==2?(sysWidth-80)/2:(sysWidth-80)/3))}}px;height:{{(Name.num==1?(sysWidth-80)/1.5:(Name.num==2?(sysWidth-80)/2:(sysWidth-80)/3))}}px;">
+          </image>
+          {{Name['video']}}
+          <video id="myVideo" src="https://1681.qunqing168.com{{Name['video']}}" binderror="videoErrorCallback"
+            danmu-list="{{danmuList}}" enable-danmu danmu-btn show-center-play-btn='{{false}}' show-play-btn="{{true}}"
+            controls picture-in-picture-mode="{{['push', 'pop']}}"
+            bindenterpictureinpicture='bindVideoEnterPictureInPicture'
+            bindleavepictureinpicture='bindVideoLeavePictureInPicture'></video>
+        </block>
+        <block wx:else>
+        <block wx:if="{{item.num!=0}}" wx:for="{{Name.pic}}" wx:key="idx">
+          <image bindtap='mageyulan' data-tplj='{{Name.pic}}' src="https://1681.qunqing168.com{{item}}"
+            mode="aspectFill"
+            style="width:{{(Name.num==1?(sysWidth-80)/1.5:(Name.num==2?(sysWidth-80)/2:(sysWidth-80)/3))}}px;height:{{(Name.num==1?(sysWidth-80)/1.5:(Name.num==2?(sysWidth-80)/2:(sysWidth-80)/3))}}px;">
+          </image>
+        </block>
+      </block>
+        <view><text>{{Name.newstime}}</text> <text data-classid="{{Name.classid}}" data-id="{{Name.id}}"
+            bindtap="pengyouquandelete">{{Name.classid}} 删除{{Name.id}}</text>
+          <view style="float:right;">
+            <image src="https://1681.qunqing168.com/upfiles/CR-WnJKeBOBEt.jpg" style="width:30px;height:20px;"></image>
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

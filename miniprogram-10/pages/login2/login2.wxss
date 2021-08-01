@@ -1,0 +1,10 @@
+/* pages/setting/setting.wxss */
+
+.bottom {
+  width:100%;
+  background:green;
+  color:#ffffff;
+  border-radius: 80rpx;
+  margin: 1000rpx 50rpx;
+  font-size: 35rpx;
+}

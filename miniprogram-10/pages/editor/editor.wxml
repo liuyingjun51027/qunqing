@@ -1,0 +1,18 @@
+<!--pages/editor/editor.wxml-->
+<view class="page-body">
+    <view class='wrapper'>
+      <view class='toolbar' bindtap="format">
+        <i class="iconfont icon-zitijiacu {{formats.bold ? 'ql-active' : ''}}" data-name="bold"></i>
+        <i class="iconfont icon-zitixieti {{formats.italic ? 'ql-active' : ''}}" data-name="italic"></i>
+        <i class="iconfont icon-zitishanchuxian {{formats.strike ? 'ql-active' : ''}}" data-name="strike"></i>
+        <i class="iconfont icon-outdent" data-name="indent" data-value="-1"></i>
+        <i class="iconfont icon-indent" data-name="indent" data-value="+1"></i>
+        <i class="iconfont icon-fengexian" bindtap="insertDivider"></i>
+        <i class="iconfont icon-charutupian" bindtap="insertImage"></i>
+      </view>
+      <editor id="editor" class="ql-container" placeholder="提示信息" showImgSize showImgToolbar showImgResize bindinput="getEditorValue"  bindready="onEditorReady">
+      </editor>
+    </view>
+</view>
+
+

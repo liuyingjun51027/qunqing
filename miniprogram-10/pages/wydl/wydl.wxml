@@ -1,0 +1,117 @@
+<scroll-view scroll-x>
+  <view class='tab'>
+    <view data-lj="../zjxx/zjxx?lmid={{classid}}&fclassid={{fclassid}}&fid={{myfid}}&lmmc={{lmmc}}" bindtap='goto'
+      hover-class="none">
+      <text>添加商品</text>
+    </view>
+    <view data-lj="../glxx/glxx?lmid={{classid}}&fclassid={{fclassid}}&fid={{myfid}}&lmmc={{lmmc}}" bindtap='goto'
+      hover-class="none">
+      <text>管理商品</text>
+    </view>
+    <view data-lj="../glxxdl/glxxdl?lmid={{classid}}&fclassid={{fclassid}}&fid={{myfid}}&lmmc={{lmmc}}" bindtap='goto'
+      hover-class="none">
+      <text>代理管理 </text>
+    </view>
+    <view>
+      <text>(</text><text
+        data-lj="../wydl/wydl?lmid={{classid}}&fclassid={{fclassid}}&myfid={{myfid}}&fid={{fid}}&lmmc={{lmmc}}&title={{title}}&dpmc={{dpmc}}&userid={{sjuserid}}&username={{sjusername}}&spdlxe={{spdlxe}}&x=1"
+        bindtap='goto' class="{{x==1?'active':''}}"> 代 理 </text>
+    </view>
+    <view>
+      <text
+        data-lj="../wydl/wydl?lmid={{classid}}&fclassid={{fclassid}}&myfid={{myfid}}&fid={{fid}}&lmmc={{lmmc}}&title={{title}}&dpmc={{dpmc}}&userid={{sjuserid}}&username={{sjusername}}&spdlxe={{spdlxe}}&x=2"
+        bindtap='goto' class="{{x==2?'active':''}}"> 取 消 </text><text>)</text>
+    </view>
+    <view data-dpsjhym="{{hymember['username']}}" bindtap='sjdp' hover-class="none">
+      <text>我的店铺</text>
+    </view>
+  </view>
+</scroll-view>
+
+<scroll-view class="scroll_view" style="margin-bottom:50px;" scroll-y bindscrolltolower="nextPage"
+  bindscrolltoupper="onePage" scroll-top='{{topNum}}' bindscroll="scrolltoupper">
+  <!-----触底触发事件----->
+
+
+  <!---回到顶部---->
+  <image src='https://www.qunqing168.com/skin/default/images/sy-up.jpg' class='goTop' hidden='{{!floorstatus}}'
+    bindtap="goTop"></image>
+  <view class="content">
+
+    <view wx:if="{{page==0}}">您还没有可以管理的信息{{classid}}</view>
+    <block wx:for="{{list}}" wx:for-item="lisdata" wx:for-index="index" wx:key="index">
+
+      <view wx:for="{{lisdata}}" class="itemx" wx:for-index="idx" wx:for-item="Name" wx:key="idx">
+        <view style="width:100%;display:flex;flex-direction:row;">
+
+          <view style="width:100px;height:100px; position:relative;float:left;">
+            <image wx:if="{{idx!==videoidx}}" mode="aspectFill" src="https://1681.qunqing168.com{{Name['titlepic']}}"
+              style="z-index:-1;position:absolute;float:left;width:100px;height:100px;" />
+          </view>
+          <view style="width:{{sysWidth-120}}px; position:relative;float:left;margin-left:20px;">
+
+            <view style='color:blue;'>{{Name['title']}}</view>
+            <view>{{Name.newstime}}</view>
+            <!-- <view>{{index}}--{{idx}}</view> -->
+            <view>栏目：{{lmmc}}
+              <!-- {{Name.classid}}id：{{Name['id']}} -->
+            </view>
+            <!--  <view>会员名{{Name['hym']}}会员id{{Name['hyid']}}</view> -->
+            <!-- <view>商家会员名{{title}}店铺名称{{dpmc}}</view> -->
+            <view>【{{dpmc}}】{{myfid}}</view>
+            <view>编号:{{Name['productno']}}</view>
+            <view> 销售价格: {{Name['price']}} 代理分钱: {{Name['dlfq']}}</view>
+            <!--  <view>卖家分钱:{{Name['mjfq']}} 代理分前: {{Name['dlfq']}}</view> -->
+            <view>劵:{{Name['coupon']}} 库存:{{Name['pmaxnum']}} 销量: {{Name['psalenum']}}</view>
+            <view>代理数量: {{Name['dlsl']}} 点击: {{Name['onclick']}}</view>
+
+          </view>
+
+        </view>
+        <view class="topborder">
+
+          <!-- <view>此商品已被代理{{Name['dlsl']}}次 满{{spdlxe}}次将不可代理 {{Name['dlsj']}}
+              <text>总数{{dlxgxx['dlzsl']}} 已代理{{dlxgxx['ydl']}} 还可代理{{dlxgxx['hkdl']}}代理数量{{dlxgxx['dlsl']}}</text>
+            </view> -->
+          <block wx:if="{{dlxgxx['ydl']*1 < dlxgxx['dlzsl']*1}}">
+            <block wx:if="{{Name['dlsl']*1 < spdlxe}}">
+              <text>代理可分 {{Name['dlfq']}}</text>
+              <block wx:if="{{Name['dlfq']==0 || Name['price']<=Name['dlfq']}}">
+                <text wx:if="{{x==1}}" class="flex-item3" style="color:#ccc;" data-tishi="代理分钱为0 或代理分钱超出合理范围"
+                  bindtap='tishi'>代理分钱没有设置 或不合理无法代理</text>
+              </block>
+              <block wx:else>
+                <text hidden="{{!Name['wydl']}}" class="flex-item3" style="color:#ccc;">已经代理</text>
+                <text wx:if="{{x==1}}" hidden="{{Name['wydl']}}" class="flex-item3" data-classid="{{Name.classid}}"
+                  data-id="{{Name.id}}" data-index="{{index}}" data-idx="{{idx}}" data-myfid="{{mysid}}" data-x="{{x}}"
+                  bindtap="wydl">我要代理</text>
+              </block>
+
+            </block>
+            <block wx:else>
+              <text wx:if="{{x==1}}" class="flex-item3 redsc" data-tishi="超限 商品代理限额为{{spdlxe}}"
+                bindtap='tishi'>此商品代理超限</text>
+            </block>
+          </block>
+          <block wx:else>
+            <text wx:if="{{x==1}}" class="flex-item3 redsc" data-tishi="超限 限额为{{dlxgxx['dlzsl']}}"
+              bindtap='tishi'>代理已超限</text>
+          </block>
+          <text hidden="{{!Name['qxdl']}}" class="flex-item3" style="color:#ccc;">已取消代理</text>
+          <text wx:if="{{x==2}}" hidden="{{Name['qxdl']}}" class="flex-item3" data-classid="{{Name.classid}}"
+            data-id="{{Name.id}}" data-index="{{index}}" data-idx="{{idx}}" data-myfid="{{myfid}}" data-x="{{x}}"
+            bindtap="wydl">取消代理</text>
+
+
+        </view>
+      </view>
+
+    </block>
+  </view>
+</scroll-view>
+<view class="main">
+  <text class="gwc-icon-num" wx:if="{{totalNum}}">{{totalNum}}</text>
+  <view hover-class="sc" class="item item1" wx:for="{{qunqing}}" wx:key="*this">
+    <image data-lj='{{dhlj[index]}}' bindtap='goto' src="{{item}}" class="item item1"></image>
+  </view>
+</view>

@@ -1,0 +1,61 @@
+<!--pages/category/category.wxml-->
+
+<view class="main">
+    <view class="custom-bar" style="height:{{navHeight}}px;">
+        <!----顶端搜索框实现代码-->
+        <view class="search-group2"
+            style="margin-top:{{searchMarginTop}}px; height: {{searchHeight}}px;width:65px;box-sizing: border-box;"
+            data-lj='../index/index' bindtap='goto'>
+            <image src="/image/fh.png" />
+        </view>
+
+        <navigator data-lj="../search/search" bindtap="goto" style="width: {{searchWidth-60}}px;">
+            <view class="search-group"
+                style="margin-top:{{searchMarginTop}}px; height: {{searchHeight}}px;width: {{searchWidth-70}}px;box-sizing: border-box;">
+
+                <icon class="search-icon" type="search" size="14"></icon>搜 索
+            </view>
+        </navigator>
+    </view>
+
+    <!-----左边大类---->
+    <scroll-view class="categroy-left" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}"
+        scroll-with-animation="true" style="margin-top:250rpx;">
+        <!-- <view class="categroy-left"> -->
+        <view wx:for="{{category}}" wx:key="index" data-id="{{item.mid}}" data-index="{{index}}" bindtap="switchTab"
+            class="cate-list {{curIndex === index?'on':''}}">{{item.name}}</view>
+
+
+        <!-- </view> -->
+    </scroll-view>
+
+    <scroll-view class="categroy-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}"
+        scroll-with-animation="true" style="margin-top:250rpx;">
+        <block wx:for="{{detail}}" wx:for-index wx:key="idx">
+            <view id="{{item.mid}}" class="cate-box">
+                
+
+
+                    <view class="cate-title" data-lj="../categorylist/categorylist?lmid={{item.id}}" bindtap="goto">
+                        <text>{{item.cate}}</text>
+                    </view>
+                
+                <view class="product">
+                    <block wx:for="{{item.detail}}" wx:key="index" wx:for-item="val">
+                        <view class="product-listx" ><!--  wx:for="{{val}}" wx:key="*this" -->
+                                <!-- <image  src="https://1681.qunqing168.com{{val.titlepic}}"></image> -->
+                                
+                                <view data-lj="../zjxx/zjxx?lmid={{val.lmid}}&fclassid={{val.fclassid}}&fid={{val.fid}}&lmmc={{val.lmmc}}" bindtap="goto" class="classname"><text>{{val.lmmc}}{{val.lmid}}</text></view>
+                            
+                        </view>
+                    </block>
+                </view>
+
+
+
+            </view>
+        </block>
+<view style="width:100%;height:300px;"></view>
+    </scroll-view>
+    <!--右边的---->
+</view>

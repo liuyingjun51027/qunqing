@@ -1,0 +1,77 @@
+<scroll-view scroll-x>
+<view class='tab'>
+    <view data-lj="../zjxx/zjxx?lmid={{classid}}&fclassid={{fclassid}}&fid={{fid}}&lmmc={{lmmc}}" bindtap='goto' hover-class="none">
+      <text>添加商品</text>
+    </view>
+    <view>
+      <text class='active'>管理商品</text>
+    </view>
+    <view data-lj="../glxxdl/glxxdl?lmid={{classid}}&fclassid={{fclassid}}&fid={{fid}}&lmmc={{lmmc}}" bindtap='goto' hover-class="none">
+      <text>代理管理</text>
+    </view>
+    <view data-dpsjhym="{{hymember['username']}}" bindtap='sjdp' hover-class="none">
+      <text>我的店铺</text>
+    </view>
+  </view>
+</scroll-view>
+
+<scroll-view class="scroll_view"  style="margin-bottom:50px;" scroll-y bindscrolltolower="nextPage" bindscrolltoupper="onePage"
+  scroll-top='{{topNum}}' bindscroll="scrolltoupper">
+  <!-----触底触发事件----->
+
+
+  <!---回到顶部---->
+  <image src='https://www.qunqing168.com/skin/default/images/sy-up.jpg' class='goTop' hidden='{{!floorstatus}}'
+    bindtap="goTop"></image>
+  <view class="content">
+
+    <view wx:if="{{page==0}}">您还没有可以管理的信息{{classid}}</view>
+    <block wx:for="{{list}}" wx:for-item="lisdata" wx:for-index="index" wx:key="index">
+
+      <view wx:for="{{lisdata}}" class="itemx" wx:for-index="idx" wx:for-item="Name" wx:key="idx">
+        <view style="width:100%;display:flex;flex-direction:row;">
+
+          <view style="width:100px;height:100px; position:relative;float:left;">
+            <image wx:if="{{idx!==videoidx}}" mode="aspectFill" src="https://1681.qunqing168.com{{Name['titlepic']}}"
+              style="z-index:-1;position:absolute;float:left;width:100px;height:100px;" />
+          </view>
+          <view style="width:{{sysWidth-120}}px; position:relative;float:left;margin-left:20px;">
+          
+            <view style='color:blue;'>{{Name['title']}}</view>
+            <view>{{Name.newstime}}</view><view>{{index}}--{{idx}}</view>
+            <view >栏目：{{Name.classid}}id：{{Name['id']}}</view>
+            <!-- <view>会员名{{Name['hym']}}会员id{{Name['hyid']}}</view> -->
+
+              <view>编号:{{Name['productno']}}</view>
+              <view>成本:{{Name['zpcb']}} 销售: {{Name['tprice']}} 购买: {{Name['price']}}</view>
+              <view>卖家分钱:{{Name['mjfq']}} 代理分前: {{Name['dlfq']}}</view>
+              <view>劵:{{Name['coupon']}} 库存:{{Name['pmaxnum']}} 销量: {{Name['psalenum']}}</view>
+              <view>代理数量: {{Name['dlsl']}} 点击: {{Name['onclick']}}</view>
+              <view style="color:{{Name['sfsj']=='是'?'green':'red'}}">{{Name['sfsj']=='是'?'已上架':'已下架'}}</view>
+
+               
+            <view style="margin-bottom:10px;">
+          <!--     {{Name['dlsj']}} -->
+              <text hidden="{{!Name['shanchu']}}"  class="flex-item3">正在删除 请稍等！.....</text>
+              <text hidden="{{Name['shanchu']}}" class="flex-item3" data-fclassid="{{fclassid}}" data-fid="{{fid}}" data-classid="{{Name.classid}}" data-id="{{Name.id}}" data-index="{{index}}" data-idx="{{idx}}"
+                bindtap="spxxdelete">删除</text>
+              <text hidden="{{Name['shanchu']}}"  class="flex-item3" 
+                data-lj="../xgxx/xgxx?lmid={{classid}}&fclassid={{fclassid}}&fid={{fid}}&lmmc={{lmmc}}&classid={Name.classid}}&id={{Name.id}}" bindtap='goto'>修改</text>
+              <text hidden="{{Name['shanchu']}}"  class="flex-item3" data-classid="{{Name.classid}}" data-id="{{Name.id}}" data-index="{{index}}" data-idx="{{idx}}"  data-sfsj="{{Name['sfsj']=='是'?'否':'是'}}" bindtap="sfsj">{{Name['sfsj']=='是'?'下架':'上架'}}</text>
+
+            </view>
+          </view>
+
+        </view>
+
+      </view>
+
+    </block>
+  </view>
+</scroll-view>
+<view class="main">
+  <text class="gwc-icon-num" wx:if="{{totalNum}}">{{totalNum}}</text>
+  <view hover-class="sc" class="item item1" wx:for="{{qunqing}}" wx:key="*this">
+    <image data-lj='{{dhlj[index]}}' bindtap='goto' src="{{item}}" class="item item1"></image>
+  </view>
+</view>

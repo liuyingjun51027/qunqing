@@ -1,0 +1,33 @@
+<!--pages/address/address.wxml-->
+<!-- 
+<view class="main">
+    <view class="form-box">
+        <form bindsubmit="formSubmit">
+            <input value="{{address.name}}" name="name" placeholder="姓名"/>
+            <input type="number" name="phone" value="{{address.phone}}" placeholder="电话号码"/>
+            <input name="detail" value="{{address.detail}}" placeholder="详细地址 例 北京市朝阳区花家地北里小区xx楼xx单元123号"/>
+            <button form-type="submit">保存</button>
+        </form>
+    </view>
+</view>
+
+<view class="main">
+<view class="form-box">
+
+
+ <view wx:for="{{address2}}" class="orders-address">
+ <icon class="cart-pro-select" type="circle" color="#ccc" size="23" data-index="{{index}}"  bindtap="selectList"></icon>
+ <text class="cart-pro" bindtap="deleteList" data-index="{{index}}">X</text>
+ 
+
+            <text class="orders-address-name">收货人: {{item.truename}}</text>
+            <text class="orders-address-phone">电话: {{item.phone}}</text>
+            <view class="orders-address-detail">{{item.addressname}}</view>
+</view>
+</view>
+</view>
+
+<navigator url="../addresso/addresso" style="width:100%"><view bindtap="formSubmit22" class="cart-footer">+ 新建地址</view></navigator> -->
+
+
+

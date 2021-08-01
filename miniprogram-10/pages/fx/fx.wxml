@@ -1,0 +1,114 @@
+<!--pages/fx/fx.wxml-->
+<scroll-view class="scroll_view" scroll-y bindscrolltolower="nextPage" bindscrolltoupper="onePage"
+  scroll-top='{{topNum}}' bindscroll="scrolltoupper">
+  <!-----触底触发事件----->
+  <view style="width:{{sysWidth}}px;height:{{sysWidth*75/100}}px;">
+    <image src="https://1681.qunqing168.com/1.jpg" style="width:{{sysWidth}}px;height:{{sysWidth*75/100}}px;" />
+  </view>
+  <view class="mainxx" style="height:50px;">
+    <text class="mainx"
+      style="width:auto;right:15px;top:-35px;color:#ffffff;font-size:35rpx;font-family:Microsoft YaHei;">{{hymember['username']}}</text>
+    <image class="mainx" bindtap='myfx' src="https://1681.qunqing168.com/{{hymember['userpic']}}"
+      style="width:50px;height:50px;top:-25px;right:15px;background-color: #fff;" />
+  </view>
+
+
+  <!---回到顶部---->
+  <image src='https://www.qunqing168.com/skin/default/images/sy-up.jpg' class='goTop' hidden='{{!floorstatus}}'
+    bindtap="goTop"></image>
+  <view class="content">
+    <block wx:for="{{list}}" wx:for-item="lisdata" wx:for-index="index" wx:key="index">
+      <view wx:for="{{lisdata}}" class="itemx" wx:for-index="idx" wx:for-item="Name" wx:key="idx">
+        <view style="width:100%;display:flex;flex-direction:row;">
+          <view style="width:60px;height:60px; position:relative;float:left;">
+            <image src="https://1681.qunqing168.com{{Name.hytx}}" mode="aspectFill"
+              style="width:50px;height:50px;border-radius:50%;margin-right:10px;">
+            </image>
+          </view>
+          <view style="width:{{sysWidth-80}}px; position:relative;float:left;">
+            <view style='color:blue;'>{{Name['title']}}</view>
+            <view class='{{Name.xs2?"note2_item":"note3_item"}}'>
+
+              <text data-id='{{idx}}' id='c{{idx}}' bindtap='textgao' class='note_item'
+                user-select='true'>{{Name.xq}}</text>
+
+            </view>
+            <view><text wx:if='{{Name.xs}}' style="color:blue;" data-index='{{index}}' data-id='{{idx}}' id='v{{idx}}'
+                bindtap='{{Name.xs2?"sq":"zk"}}'>{{Name.xs2?"收起":"全文"}}</text></view>
+
+            <block wx:if="{{Name['video']}}">
+              {{videoidx}}
+              <view hidden="{{idx!==videoidx?false:true}}" wx:if="{{Name['video']}}"
+                style="width:{{sysWidth-80}}px;height:{{(sysWidth-80)/1.5}}px;">
+                <image wx:if="{{idx!==videoidx}}" mode="aspectFill" src="https://1681.qunqing168.com{{Name.pic[0]}}"
+                  style="z-index:-1;position:absolute;float:left;width:{{sysWidth-80}}px;height:{{(sysWidth-80)/1.5}}px;" />
+                <image wx:if="{{idx!==videoidx}}" src="/image/spbfan.jpg" data-index="{{index}}" data-idx="{{idx}}"
+                  bindtap="bindPlay"
+                  style="position:absolute;float:left;width:30px;height:30px;margin-top:{{(sysWidth-80)/1.5/2-15}}px;margin-left:{{(sysWidth-80)/2-15}}px;" />
+              </view>
+              <view hidden='{{idx==videoidx?false:true}}'
+                style="width:{{sysWidth-80}}px;height:{{(sysWidth-80)/1.5}}px;">
+                <video wx:if='{{idx==videoidx}}' id="myVideo{{idx}}"
+                  style="width:{{sysWidth-80}}px;height:{{(sysWidth-80)/1.5}}px;"
+                  src="https://1681.qunqing168.com{{Name['video']}}" binderror="videoErrorCallback"
+                  danmu-list="{{danmuList}}" enable-danmu danmu-btn show-center-play-btn='{{false}}'
+                  show-play-btn="{{true}}" controls="{{true}}" picture-in-picture-mode="{{['push', 'pop']}}"
+                  bindenterpictureinpicture='bindVideoEnterPictureInPicture'
+                  bindleavepictureinpicture='bindVideoLeavePictureInPicture'></video>
+              </view>
+            </block>
+            <block wx:else>
+              <block wx:if="{{item.num!=0}}" wx:for="{{Name.pic}}" wx:key="idx">
+                <image bindtap='mageyulan' data-tplj='{{Name.pic}}' src="https://1681.qunqing168.com{{item}}"
+                  mode="aspectFill"
+                  style="width:{{(Name.num==1?(sysWidth-80)/1.5:(Name.num==2?(sysWidth-80)/2:(sysWidth-80)/3))}}px;height:{{(Name.num==1?(sysWidth-80)/1.5:(Name.num==2?(sysWidth-80)/2:(sysWidth-80)/3))}}px;">
+                </image>
+              </block>
+            </block>
+
+            <view style="color:#ccc;margin-bottom:10px;"><text>{{Name.newstime}}</text> <text
+                data-classid="{{Name.classid}}" data-id="{{Name.id}}" bindtap="pengyouquandelete">{{Name.classid}}
+                删除{{Name.id}}</text><text data-classid="{{Name.classid}}" data-id="{{Name.id}}"
+                bindtap="pengyouquanupload">{{Name.classid}} 修改
+                {{Name.id}}</text>
+
+              <view hidden='{{idx!==plidx?false:true}}' style="float:right;">
+                <image bindtap='zkgb' data-idx="{{idx}}" data-kg="1"
+                  src="https://1681.qunqing168.com/upfiles/CR-WnJKeBOBEt.jpg" style="width:30px;height:20px;" />
+              </view>
+              <view hidden='{{idx==plidx?false:true}}' style="float:right;">
+                <image bindtap='qxdz' src="https://1681.qunqing168.com/d/cn/zqx0519.gif"
+                  style="width:60px;height:25px;" />
+                <image bindtap='dz' data-idx="{{idx}}" data-kg="1" src="https://1681.qunqing168.com/d/cn/xz0519.gif"
+                  style="width:60px;height:25px;" />
+                <image bindtap='pl' data-idx="{{idx}}" data-kg="2" src="https://1681.qunqing168.com/d/cn/pl0519.gif"
+                  style="width:60px;height:25px;" />
+                <image bindtap='zkgb' data-kg="2" src="https://1681.qunqing168.com/upfiles/CR-WnJKeBOBEt.jpg"
+                  style="width:30px;height:20px;" />
+              </view>
+
+            </view>
+
+            <view><text wx:for="{{Name.dz}}">{{item.tjr}}</text></view>
+            <view><text wx:for="{{Name.pl}}">{{item.pl}}</text></view>
+
+          </view>
+
+        </view>
+        <view hidden='{{idx==plidx?false:true}}'>
+          <form bindsubmit="bindFormSubmit">
+            <input placeholder="请输入问题内容" maxlength='-1' name="content" />
+           <!--  <button style="width:25%;float:right;" bindtap="quxiao">取消</button>
+            <button style="width:25%; color:green;float:right;" form-type="submit"> 提交 </button> -->
+          </form>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+<view class="main">
+  <text class="gwc-icon-num" wx:if="{{totalNum}}">{{totalNum}}</text>
+  <view hover-class="sc" class="item item1" wx:for="{{qunqing}}" wx:key="*this">
+    <image data-lj='{{dhlj[index]}}' bindtap='goto' src="{{item}}" class="item item1"></image>
+  </view>
+</view>

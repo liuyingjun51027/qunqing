@@ -1,0 +1,54 @@
+{
+  "pages": [
+
+    "pages/login/login",
+    "pages/log/log",
+    "pages/index/index",
+    "pages/editor/editor",
+    "pages/details/details",
+    "pages/wxzf/wxzf",
+    "pages/login2/login2",
+    "pages/user/user",
+    "pages/order/order",
+    "pages/glorder/glorder",
+    "pages/fx/fx",
+    "pages/fxmy/fxmy",
+    "pages/fxmy/myxc/myxc",
+    "pages/fxmy/fxsc/fxsc",
+    "pages/fxmy/fxxg/fxxg",
+    "pages/gwc/gwc",
+    "pages/orders/orders",
+    "pages/address/address",
+    "pages/logs/logs",
+    "pages/search/search",
+    "pages/category/category",
+    "pages/categorylist/categorylist",
+    "pages/cs/cs",
+    "pages/coupon/coupon",
+    "pages/sjdp/sjdp",
+    "pages/wdsc/wdsc",
+    "pages/zjxx/zjxx",
+    "pages/xgxx/xgxx",
+    "pages/glxx/glxx",
+    "pages/glxxdl/glxxdl",
+    "pages/wydl/wydl",
+    "pages/saomagwc/saomagwc",
+    "pages/gz/gl/gl",
+    "pages/gz/zj/zj",
+    "pages/gz/xg/xg",
+    "pages/gz/gz/gz"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的商家距离测算"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fcfaf8",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

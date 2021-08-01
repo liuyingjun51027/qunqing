@@ -1,0 +1,162 @@
+/* pages/fx/fx.wxss */
+/* pages/index/index.wxss */
+@import '../common/common.wxss';
+
+.content {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+
+  padding: 0 20rpx;
+
+
+}
+
+.itemx {
+  width: 100%;
+  margin: 0 0 20rpx 0;
+
+  border-bottom: #cccccc solid 2px;
+}
+
+.itemx-- image {
+
+  width: 30%;
+
+  height: 150rpx;
+
+}
+
+view {
+  word-break: keep-all;
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+
+/*显示全部*/
+.note_item {
+  display: -webkit-box;
+  font-size: 28rpx;
+  color: #000000;
+  line-height: 40rpx;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*显示三行*/
+.note2_item {
+  /*  display: block; 
+  font-size:28rpx;
+  color:#000000;
+  line-height: 40rpx;
+  height:120rpx;
+  white-space: nowrap; 
+  word-wrap:break-word;
+  word-break:break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:3;
+  overflow: hidden;
+  text-overflow:ellipsis; */
+  display: block;
+
+  word-break:break-all;
+  -webkit-line-clamp:3;
+  line-height: 40rpx;
+  font-size: 25rpx;
+}
+
+.note3_item {
+  display:block;
+   max-height: 120rpx; 
+
+   word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:3;
+    overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*white-space 值
+ normal	默认。空白会被浏览器忽略。
+pre	空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签。
+nowrap	文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。
+pre-wrap	保留空白符序列，但是正常地进行换行。
+pre-line	合并空白符序列，但是保留换行符。
+inherit	规定应该从父元素继承 white-space 属性的值*/
+.mainx {
+  display: flex;
+  flex-direction:wro; 
+  justify-content:flex-end;
+  align-items:center;
+  width: 100%;
+  position:relative;
+  padding: 2px;
+}
+.mainxx {
+  display: flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+.scroll_view{
+  height:100vh;
+  margin-bottom: 120rpx;
+}
+/* 返回顶部 */
+.goTop{
+  height: 100rpx;
+  width: 100rpx;
+  position: fixed;
+  bottom: 100rpx;
+  background: rgba(0,0,0,.3);
+  right: 30rpx;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.flex-item3 {
+  /* font-size: 26rpx; */
+  justify-content: center;
+  text-align: center;
+  padding: 5rpx;
+  margin: 8rpx 6rpx;
+  border: 2rpx solid #cccccc;
+  float:right;
+}
+.flex-item2 {
+  justify-content: center;
+  text-align: center;
+  padding: 5rpx;
+  margin: 8rpx 6rpx;
+  border: 2rpx solid #cccccc;
+  float:left;
+}
+
+.tab{
+  width:100%;
+  height: 7vh;
+  display: flex;
+  /* position: fixed; */
+  line-height: 7vh;
+  background-color: aliceblue;
+  z-index: 999;
+  top:0;
+}
+
+.tab view{
+  width:120rpx;
+  flex: 1 0 auto;
+  font-size: 14px;
+  color: #333333;
+  text-align: center;
+}
+.tab .active{
+  color: #ff5f19;
+  border-bottom: 1px solid #ff5f19;
+  padding-bottom:1.8vh;
+}

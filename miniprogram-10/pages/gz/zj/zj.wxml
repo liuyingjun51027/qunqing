@@ -1,0 +1,182 @@
+<scroll-view scroll-x>
+<view class='tab'>
+    <view>
+      <text class='active'>添加商品</text>
+    </view>
+    <view data-lj="../glxx/glxx?lmid={{classid}}&fclassid={{fclassid}}&fid={{fid}}&lmmc={{lmmc}}" bindtap='goto' hover-class="none">
+      <text>管理商品</text>
+    </view>
+    <view data-lj="../glxxdl/glxxdl?lmid={{classid}}&fclassid={{fclassid}}&fid={{fid}}&lmmc={{lmmc}}" bindtap='goto' hover-class="none">
+      <text>代理管理</text>
+    </view>
+    <view data-dpsjhym="{{hymember['username']}}" bindtap='sjdp' hover-class="none">
+      <text>我的店铺</text>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="page-body" style="margin-bottom:150px;">
+
+  <button bindtap="saomagwc">扫码</button>
+  <form bindsubmit="bindFormSubmit">
+    <view style='display: flex; justify-content:space-between;position: fixed;bottom:0;z-index:999;'>
+      <button bindtap="quxiao">取消</button>
+      <!-- <view style="width:45%;height:auto;bottom:25px;"></view> -->
+      <button style="color:green;" form-type="submit"> 提交 </button>
+    </view>
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="{{fclassid}}" name="fclassid" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="{{fid}}" name="fid" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="Showhidden" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="checked" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="{{classid}}" name="classid" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="{{hymember['userid']}}" name="userid " />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="{{hymember['username']}}" name="username" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="{{fid}}to{{fid}}ot" name="dlsj" />
+
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="gzxgpic" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="gzjz" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="sfwc" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="gzlb" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="gzxglj" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="zbzt" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="zbr" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="glid" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="刘应君" name="jdreny" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="啪啪啪啪啪啪" name="title" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="gzxxjc" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="nr" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="gzyjfk" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="gzxdr" />
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="jdgzr" />
+
+    <input hidden="{{true}}" class="weui-input" maxlength="100" value="1" name="ysgzry" />
+
+    <block wx:for="{{frombiaodan}}">
+      
+
+      <block wx:if="{{item['f']=='pro'||item['f']=='city'||item['f']=='area'||item['f']=='befrom'}}">
+        <view class="page-section" wx:if="{{item['fform']=='select'}}">
+          <view wx:if="{{item['f']=='pro'}}" class="weui-cells__title" bindtap="ssqw">快速添加省市区</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <block wx:if="{{item['f']=='befrom'}}">
+                <input class="weui-input" maxlength="100" value="{{region[item['f']]}}" placeholder="{{item['fname']}}"
+                  name="{{[item['f']]}}" /><text style="color:#ccc;">{{item['fname']}}</text>
+              </block>
+              <block wx:else>
+                <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+                  <view class="weui-input">{{region[item['f']]}}<text style="color:#ccc;">{{item['fname']}}</text>
+                  </view>
+                  <input hidden="{{true}}" class="weui-input" maxlength="20" value="{{region[item['f']]}}"
+                    placeholder="{{item['fname']}}" name="{{[item['f']]}}" />
+                </picker>
+              </block>
+
+            </view>
+          </view>
+        </view>
+      </block>
+      <view class="page-section" wx:if="{{item['fform']=='img'}}">
+        <view wx:if="{{item['f']=='productpic'}}" class="weui-cells__title" data-index="1" data-pic="{{item['pic']}}"
+          data-picnum="{{item['picnum']}}" bindtap="isimgg">批量添加图片</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <image src="{{imglist[item['f']]?imglist[item['f']]:'https://1681.qunqing168.com/d/cn/tjtp30.gif'}}"
+              style="width:50px;height:50px;" data-index="1" data-pic="{{item['f']}}" bindtap="isimg" /><text
+              style="color:#ccc;">{{item['fname']}}</text>
+            <input hidden="{{true}}" class="weui-input" maxlength="100" bindinput="bindKeyInput"
+              placeholder="{{item['fname']}}" value="{{imglist[item['f']]}}" name="{{[item['f']]}}"/>
+          </view>
+        </view>
+      </view>
+      <view class="page-section" wx:if="{{item['fform']=='checkbox'}}">
+        <view class="weui-cells__title">简单描述</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <textarea class="pd" maxlength="-1" placeholder="{{item['fname']}}" auto-height
+              name="{{[item['f']]}}" />
+          </view>
+        </view>
+      </view>
+      <view class="page-section" wx:if="{{item['fform']=='radio'}}">
+
+        <picker mode="selector" bindchange="bindPickerChange" data-id="{{index}}" data-ffid="{{item['f']+item['fid']}}"
+          range="{{item['fvalue']}}">
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-input">{{item['fvalue'][item[item['f']+item['fid']]?item[item['f']+item['fid']]:0]}}
+                <text style="color:#ccc;">{{item['fname']}}</text> </view>
+              <input hidden="{{true}}" class="weui-input" placeholder="{{item['fname']}}"
+                value="{{item['fvalue'][item[item['f']+item['fid']]?item[item['f']+item['fid']]:0]}}"
+                name="{{[item['f']]}}" />
+            </view>
+          </view>
+        </picker>
+      </view>
+      <view class="page-section" wx:if="{{item['fform']=='editor'}}">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <textarea class="pd" type="number" placeholder="{{item['fname']}}" auto-height
+              name="{{[item['f']]}}" /><text style="color:#ccc;">{{item['fname']}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section" wx:if="{{item['fform']=='text'}}">
+        <block wx:if="{{item['f']=='productno'}}">
+          <view wx:if="{{!smtj}}" class="weui-cells__title" bindtap="smtj">扫码添加</view>
+          <view wx:if="{{smtj}}" class="weui-cells__title" bindtap="smtjqx">手动添加</view>
+        </block>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <block wx:if="{{item['ftype']=='INT'}}">
+              <block wx:if="{{item['f']=='hyid'}}">
+                <input hidden="{{true}}" class="weui-input" placeholder="{{item['fname']}}"
+                  value="{{hymember['userid']}}" name="{{[item['f']]}}" />
+              </block>
+              <block wx:elif="{{item['f']=='pmaxnum'}}">
+                <input class="weui-input" type="number" placeholder="{{item['fname']}}" value="{{fq[item['f']]}}"
+                  name="{{[item['f']]}}" bindblur="bindKeyInput" bindfocus="bindKeyInputon" data-f="{{item['f']}}" />
+                <text style="color:#ccc;">{{item['fname']}}</text>
+              </block>
+              <block wx:else>
+                <input class="weui-input" type="number" placeholder="{{item['fname']}}" name="{{[item['f']]}}" /> <text
+                  style="color:#ccc;">{{item['fname']}}</text>
+              </block>
+            </block>
+            <block wx:elif="{{item['ftype']=='DOUBLE'}}">
+              <input hidden="{{[item['f']]=='mjfq'?true:flase}}" class="weui-input" type="digit" placeholder="{{item['fname']}}" value="{{fq[item['f']]}}"
+                name="{{[item['f']]}}" bindblur="bindKeyInput" bindfocus="bindKeyInputon" data-f="{{item['f']}}" />
+              <text  hidden="{{[item['f']]=='mjfq'?true:flase}}"  style="color:#ccc;">{{item['fname']}}</text>
+            </block>
+            <block wx:else>
+              <block wx:if="{{item['f']=='hym'}}">
+                <input hidden="{{true}}" class="weui-input" placeholder="{{item['fname']}}"
+                  value="{{hymember['username']}}" name="{{[item['f']]}}" />
+              </block>
+              <block wx:elif="{{item['f']=='productno'}}">
+                <camera wx:if="{{smtj}}" mode="scanCode" frame-size="small" binderror="error" bindscancode='takeCode'
+                  style="width: 100%; height: 300px;"></camera>
+                <input wx:if="{{!smtj}}" class="weui-input" placeholder="{{item['fname']}}" value="{{code}}"
+                  name="{{[item['f']]}}" />
+              </block>
+              <block wx:else>
+                <block wx:if="{{[item['f']]=='sfsj'}}">
+                  <input  hidden="{{true}}"  class="weui-input" placeholder="{{item['fname']}}" value="{{fq[item['f']]}}" name="{{[item['f']]}}" /> 
+                </block>
+                <block wx:else>
+                  <input class="weui-input" placeholder="{{item['fname']}}" name="{{[item['f']]}}" /> <text
+                    style="color:#ccc;">{{item['fname']}}</text>
+                </block>
+
+              </block>
+            </block>
+
+          </view>
+        </view>
+      </view>
+
+
+    </block>
+  </form>
+</view>

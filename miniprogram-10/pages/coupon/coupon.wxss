@@ -1,0 +1,12 @@
+@import '../category/category.wxss'; 
+.product-listx{
+  border: 1rpx #AB956D solid;
+  display: inline-block;
+
+  /*width: 160rpx; width: 115rpx;
+  height: 160rpx;*/
+
+  text-align: center;
+  margin:0rpx 20rpx 20rpx 0rpx;
+  font-size: 24rpx;
+}

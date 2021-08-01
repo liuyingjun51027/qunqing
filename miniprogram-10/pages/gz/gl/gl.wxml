@@ -1,0 +1,57 @@
+<!--pages/myspgl/myspgl.wxml-->
+<view data-lj="../zjxx/zjxx?lmid={{val.lmid}}&fclassid={{val.fclassid}}&fid={{val.fid}}&lmmc={{val.lmmc}}" bindtap="goto" class="classname"><text>{{val.lmmc}}{{val.lmid}}上传商品</text></view>
+
+
+
+<scroll-view scroll-y style='height:100vh;'>
+  <view class='top'>
+    
+    <view>
+
+
+      <view class='img'>
+        <image src="https://1681.qunqing168.com{{hymember['userpic']}}" class='img'></image>
+      </view>
+      <view class='text'>
+        <open-data type="userNickName"></open-data>
+      </view>
+    </view>
+  </view>
+  <view class='itemm'>
+    <view class='left'>
+      <text data-lj="/pages/order/order?type=0&userid={{hymember['userid']}}&username={{hymember['username']}}" bindtap='goto' class=''>我的订单</text>
+    </view>
+    <view class='right'>
+      <view data-lj="/pages/order/order?type=0&userid={{hymember['userid']}}&username={{hymember['username']}}" bindtap='goto'  hover-class="none">
+        <text>查看全部订单</text>
+        <image src='/image/my_order.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='icon'>
+    <view data-lj="../zj/zj?lmid={{val.lmid}}&fclassid={{val.fclassid}}&fid={{val.fid}}&lmmc={{val.lmmc}}" bindtap='goto' hover-class="none">
+      <image src='../../image/pending_payment.png' mode="aspectFit"></image>
+      <text>增加</text>
+    </view>
+    <view data-lj="../xg/xg?lmid={{val.lmid}}&fclassid={{val.fclassid}}&fid={{val.fid}}&lmmc={{val.lmmc}}" bindtap='goto' hover-class="none">
+      <image src='../../image/pending_delivery.png' mode="aspectFit"></image>
+      <text>修改</text>
+    </view>
+    <view data-lj="../gz/gz?lmid={{val.lmid}}&fclassid={{val.fclassid}}&fid={{val.fid}}&lmmc={{val.lmmc}}" bindtap='goto' hover-class="none">
+      <image src='../../image/already_shipped.png' mode="aspectFit"></image>
+      <text>工作</text>
+    </view>
+  </view>
+ 
+</scroll-view>
+
+
+
+
+
+
+
+
+
+
+

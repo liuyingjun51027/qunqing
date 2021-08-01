@@ -1,0 +1,31 @@
+<view class="content">
+
+    <view style="width:100%;display:flex;flex-direction:row;">
+      <view style="width:60px;height:60px; position:relative;float:left;">
+        <image src="https://1681.qunqing168.com/1.jpg" mode="aspectFill"
+          style="width:50px;height:50px;border-radius:50%;margin-right:10px;">
+        </image>
+      </view>
+      <view style="width:{{sysWidth-80}}px; position:relative;float:left;">
+        <view style='color:blue;'>刘应君</view>
+        <view>注册:2013-06-26 13:37:51</view>
+        <view>个人相册</view>
+        <view bindtap='myfx'>
+          <image src="https://1681.qunqing168.com/1.jpg" mode="aspectFill"
+          style="width:50px;height:50px;margin-right:10px;"></image>
+          <image src="https://1681.qunqing168.com/1.jpg" mode="aspectFill"
+          style="width:50px;height:50px;margin-right:10px;"></image>
+          <image src="https://1681.qunqing168.com/1.jpg" mode="aspectFill"
+          style="width:50px;height:50px;margin-right:10px;"></image>
+          <image src="https://1681.qunqing168.com/1.jpg" mode="aspectFill"
+          style="width:50px;height:50px;margin-right:10px;"></image>
+          
+        </view>
+        <view>我的店铺</view>
+        <view>我的店铺后台</view>
+      </view>
+    </view>
+<view><button>发消息</button></view>
+</view>
+
+

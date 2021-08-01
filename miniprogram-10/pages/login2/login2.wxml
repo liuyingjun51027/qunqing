@@ -1,0 +1,6 @@
+<!--pages/setting/setting.wxml-->
+<!----button open-type="openSetting" type="primary">去授权</button---->
+<!---view style="width:100%;height:900rpx;background:rgb(0,0,0,0.1);">您还没有授权，授权后，才能给您提供更好的服务2222222222</view--->
+ <button class="bottom" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 授权登录</button>
+
+

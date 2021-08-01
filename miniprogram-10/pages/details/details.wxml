@@ -1,0 +1,1445 @@
+<!--pages/details/details.wxml-->
+
+<view class="mainn">
+  <block wx:if="{{curIndex !== 4}}">
+    <view wx:if="{{curIndex === 0}}" class="goods-tab-box" style="opacity:{{navOpacity}};">
+      <view class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">详 情</view>
+      <view class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">参 数</view>
+      <view class="goods-tab-nav {{curIndex === 2 ?'on':''}}" bindtap="bindTap" data-index="2">售 后</view>
+      <view class="goods-tab-nav {{curIndex === 3 ?'on':''}}" bindtap="bindTaphaoping" data-index="3"
+        data-maijia="{{goods['maijia']['title']}}" data-hpzt="" data-ksfyt="0">好 评</view>
+    </view>
+    <view wx:else class="goods-tab-box">
+      <view class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">详 情</view>
+      <view class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">参 数</view>
+      <view class="goods-tab-nav {{curIndex === 2 ?'on':''}}" bindtap="bindTap" data-index="2">售 后</view>
+      <view class="goods-tab-nav {{curIndex === 3 ?'on':''}}" bindtap="bindTaphaoping" data-index="3"
+        data-maijia="{{goods['maijia']['title']}}" data-hpzt="" data-ksfyt="0">好 评</view>
+    </view>
+  </block>
+  <block wx:else>
+    <view wx:if="{{curIndex === 4}}" class="goods-tab-box">
+      <button class="button-red" bindtap="bindTap" data-index="0">返 回</button>
+
+    </view>
+  </block>
+  <view class="goods-content2">
+
+
+    <view class="goods-content-box" wx:if="{{curIndex === 0}}">
+
+      <swiper class="goods-content-box" indicator-dots="true" indicator-color="red" indicator-active-color="#ffffff">
+        <block wx:for="{{imgUrls}}" wx:key="key2">
+          <swiper-item>
+            <image mode="widthFix" data-src="{{item}}" bindtap="previewImage" src="{{item}}"
+              class="/*goods-thumb*/ gs-ct-bx-image" width="100%" />
+          </swiper-item>
+        </block>
+
+      </swiper>
+
+      <view class="goods-content--">
+
+
+        <navigator url="../gwc/gwc" role="navigation">
+          <view class="carts-icon {{ongwcsl}}">
+            <image src="/image/cart2.png" style="width:100%;height:100%"></image>
+            <text class="carts-icon-num" wx:if="{{hasCarts}}">{{num}}</text>
+          </view>
+        </navigator>
+        <view class="martop flex-item3 bor">
+          <image class='left' src="https://1681.qunqing168.com{{goods['maijia']['titlepic']}}"
+            style="width: 60rpx;height:60rpx;border-radius:50%;"></image>
+          <view class="right goods-title " data-dpsjhym="{{goods['maijia']['title']}}" bindtap="sjdp">
+            进店看看
+          </view>
+          
+            <text class="goods-price">【{{goods['maijia']['dpmc']}}】</text>
+          </view>
+
+        </view>
+        
+        <view style="width:100%;height:auto;display: flex;flex-direction: row;justify-content: center;">
+                <view class="flex-item3">
+                    <button   bindtap="{{sfsc?'':'tjsc'}}" class="search-text" style="width:300rpx;color:{{sfsc?'red':''}}">
+                        <image
+                            src="https://1681.qunqing168.com{{sfsc?'/d/file/2021-03-20/e51ea2d59fb9ed1ac32969b366e24a65.gif':'/d/file/2021-03-20/3c0fa63405cf013fe9b540af8f30c9cd.gif'}}"
+                            style="width:30rpx;height:30rpx;" /><!-- {{goods['scnum']}} -->{{scnum}}{{sfsc?'已收藏':'收藏'}}</button>
+                </view>
+                <view class="flex-item3">
+                    <button class="search-text" open-type="share" style="width:185rpx;">分享</button>
+                </view>
+                <view class="flex-item3">
+                    <button open-type="contact" class='search-text' style="width:185rpx;">客服</button>
+                </view>
+            </view>
+        <view class="goods-box2">
+          <!-- <view class="goods-operation">
+            <text class="goods-operation-num">数量 {{num}}</text>
+            <text class="goods-operation-add" bindtap="addCount">+</text>
+            <text class="goods-to-cart" bindtap="addToCart">加入购物车</text>
+            <image src="/image/cart1.png" class="goods-cart-img" bindtap="addToCart"></image>
+          </view> -->
+          <!-- <image src="https://1681.qunqing168.com{{goods['maijia']['titlepic']}}"
+            style="width: 80rpx;height:80rpx;border-radius:50%;"></image>
+          <text class="goods-price">【{{goods['maijia']['dpmc']}}】</text>
+          <view class="goods-title">{{goods.title}}</view> -->
+          <!-- <view class="goods-stock">有货</view> -->
+          <view class="goods-title">{{goods.title}}</view>
+          <text>库存 : {{goods.pmaxnum}} 件 销量 : {{goods.psalenum}} 件</text>
+          <text>商品编码：{{goods.productno}}</text>
+          <view class="goods-price">￥ {{goods.price}}</view>
+        </view>
+        <!-- <view wx:if="{{goods.titlepic}}" class="goods-thumb">
+          <image src="https://1681.qunqing168.com{{goods.titlepic}}"></image>
+        </view> -->
+
+
+
+
+        <view>
+        <view wx:if="{{youhua}}" class='swiper'>
+          <block wx:if="{{xzid === 4 ||xzid === 5||xzid === 6||xzid === 7}}">
+
+            <view wx:if="{{xzxid === 4}}">
+              <image src="https://1681.qunqing168.com/actionn/showimg.php?{{pkpic[currentimg]}}" class="slide-image"
+                mode="widthFix" bindtap="gb" />
+
+              <view class="flex-itemm borr">
+
+                <view wx:if="{{mjkuangcai['successym']}}" class="mini-btt red" bindtap="xzym" data-index="4">亚麻</view>
+                <view wx:elif="{{mjkuangcai['successnk']}}" class="mini-btt red" bindtap="xzym" data-index="4">内框</view>
+                <view wx:else hidden="true"></view>
+                <view class="mini-btt" bindtap="kazhi" data-lm="61" data-index="5"
+                  hidden="{{!mjkuangcai['successkz']}}">卡纸</view>
+
+                <view view class="mini-btt" bindtap="kazhi" data-lm="121" data-index="6"
+                  hidden="{{!mjkuangcai['successbh']}}">装裱</view>
+                <view view class="mini-btt" bindtap="xzzp" data-xs="true" data-index="7">无</view>
+
+              </view>
+              <view class="flex-itemm">
+                <view class="mini-btt">油画: </view>
+                <view wx:if="{{mjkuangcai['successym']}}" class="mini-btt {{pkzid['ym']==1?'red':''}}"
+                  style="display:flex;flex-direction: row;">
+
+                  <text bindtap="pkzid" data-id="1" data-xm="ym">亚麻 </text><text decode="{{true}}">&nbsp;|&nbsp;</text>
+                  <icon type="{{pkid['ym']?'success_circle':'circle'}}" color="green" class="cart-pro-select"
+                    data-xm="ym" bindtap="select" size="20" />
+
+                </view>
+                <view wx:if="{{mjkuangcai['successnk']}}" class="mini-btt {{pkzid['ym']==2?'red':''}}"
+                  style="display:flex;flex-direction: row;">
+
+                  <text bindtap="pkzid" data-id="2" data-xm="ym">内框</text><text decode="{{true}}">&nbsp;|&nbsp;</text>
+                  <icon type="{{pkid['nk']?'success_circle':'circle'}}" color="green" class="cart-pro-select"
+                    data-xm="nk" bindtap="select" size="20" />
+
+                </view>
+
+
+              </view>
+
+              <block wx:if="{{pkzid['ym']===1}}">
+                <swiper class="goods-content-box2" indicator-dots="true" indicator-color="red"
+                  indicator-active-color="#ffffff">
+
+                  <swiper-item>
+                    <view style="width:100%;">
+
+                      <view
+                        style="display: flex;justify-content: center; align-items:center;width: 100%;height:220rpx;">
+
+                        <block wx:for="{{mjkuangcai['data']['maijiayama']}}">
+                          <view
+                            style="width: 177rpx;height:177rpx;margin:2rpx;background: url(https://1681.qunqing168.com/actionn/showimg.php?{{pkpic[currentimg]}}&ymid={{item['id']}}&type=2) no-repeat;background-size:350% auto;"
+                            bindtap="gb2" data-ymid="{{item['id']}}" data-ymjg="{{item['tprice']}}"
+                            data-ymkd="{{item['kuangdu']}}">{{item['tprice']}}</view>
+
+
+                        </block>
+
+
+                      </view>
+
+                    </view>
+                  </swiper-item>
+
+
+
+                </swiper>
+
+
+
+                <view class="flex-itemm borr" wx:if="{{mjkuangcai['data']['successym']}}"
+                  wx:if="{{mjkuangcai['data']['totalym']>4}}">
+                  <view class="mini-btt">{{mjkuangcai['data']['totalym']}}</view>
+                  <view class="mini-btt" bindtap="pksxy" data-total="{{mjkuangcai['data']['totalym']}}"
+                    data-page="{{mjkuangcai['data']['pageym']}}" data-index='1' data-title="{{title}}">上一页</view>
+                  <view class="mini-btt">{{mjkuangcai['data']['pageym']}}</view>
+                  <view class="mini-btt" bindtap="pksxy" data-total="{{mjkuangcai['data']['totalym']}}"
+                    data-page="{{mjkuangcai['data']['pageym']}}" data-index='2' data-title="{{title}}">下一页</view>
+                  <view class="mini-btt" bindtap="pksxy" data-total="{{mjkuangcai['data']['totalym']}}"
+                    data-page="{{mjkuangcai['data']['pageym']}}" data-index='3' data-title="{{title}}">随机</view>
+
+                </view>
+              </block>
+              <block wx:if="{{pkzid['ym']===2}}">
+                <swiper class="goods-content-box2" indicator-dots="true" indicator-color="red"
+                  indicator-active-color="#ffffff" style="height:250rpx;">
+                  <swiper-item>
+                    <view style="display: flex;justify-content: center; align-items:center;width: 100%;height:250rpx;">
+                      <block wx:for="{{mjkuangcai['data']['maijiank']}}">
+                        <view
+                          style="width: 177rpx;height:177rpx;margin:5rpx;background: url(https://1681.qunqing168.com{{item['titlepic']}}) no-repeat;background-size:100% auto;"
+                          bindtap="pksxyybbpic" data-id="{{item['id']}}" data-xm="nkid" data-xmm="nkjg"
+                          data-nkhsl="{{item['nkhsl']}}" data-nkssl="{{item['nkssl']}}" data-jg="{{item['tprice']}}">
+                          {{item['tprice']}}
+                        </view>
+                      </block>
+                    </view>
+                  </swiper-item>
+                </swiper>
+                <view class="flex-itemm borr" wx:if="{{mjkuangcai['data']['totalnk']>4}}">
+                  <view class="mini-btt">{{mjkuangcai['data']['totalnk']}}</view>
+
+                  <view class="mini-btt" style="{{mjkuangcai['data']['pagenk']>1?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['pagenk']>1?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalnk']}}" data-page="{{mjkuangcai['data']['pagenk']}}"
+                    data-index='1' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiank'][0]['classid']}}">上一页
+                  </view>
+                  <view class="mini-btt">{{mjkuangcai['data']['pagenk']}}</view>
+                  <view class="mini-btt"
+                    style="{{mjkuangcai['data']['totalnk']/4>mjkuangcai['data']['pagenk']?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['totalnk']/4>mjkuangcai['data']['pagenk']?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalnk']}}" data-page="{{mjkuangcai['data']['pagenk']}}"
+                    data-index='2' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiank'][0]['classid']}}">下一页
+                  </view>
+                  <view class="mini-btt" bindtap="pksxyybb" data-total="{{mjkuangcai['data']['totalnk']}}"
+                    data-page="{{mjkuangcai['data']['pagenk']}}" data-index='3' data-title="{{title}}"
+                    data-lm="{{mjkuangcai['data']['maijiank'][0]['classid']}}">随机</view>
+
+                </view>
+              </block>
+            </view>
+            <view wx:if="{{xzxid === 5}}">
+
+              <image src="https://1681.qunqing168.com/actionn/showimg.php?{{pkpic[currentimg]}}" class="slide-image"
+                mode="widthFix" bindtap="gb" data-type="{{type}}" />
+
+              <view class="flex-itemm borr">
+
+                <view wx:if="{{mjkuangcai['successym']}}" class="mini-btt" bindtap="xzym" data-index="4">亚麻</view>
+                <view wx:elif="{{mjkuangcai['successnk']}}" class="mini-btt" bindtap="xzym" data-index="4">内框</view>
+                <view wx:else hidden="true"></view>
+                <view class="mini-btt red" bindtap="kazhi" data-lm="61" data-index="5"
+                  hidden="{{!mjkuangcai['successkz']}}">卡纸</view>
+
+                <view view class="mini-btt" bindtap="kazhi" data-lm="121" data-index="6"
+                  hidden="{{!mjkuangcai['successbh']}}">装裱</view>
+
+                <view view class="mini-btt" bindtap="xzzp" data-index="7">无</view>
+
+              </view>
+              <view class="flex-itemm borr">
+                <view class="mini-btt">十字,刺绣类</view>
+                <view class="mini-btt {{pkzid['kz']==1?'red':''}}" bindtap="pkzid" data-id="1" data-xm="kz">卡纸</view>
+                <view class="mini-btt {{pkzid['kz']==2?'red':''}}" bindtap="pkzid" data-id="2" data-xm="kz">玻璃</view>
+                <view class="mini-btt {{pkzid['kz']==3?'red':''}}" bindtap="pkzid" data-id="3" data-xm="kz">背板</view>
+
+
+              </view>
+              <block wx:if="{{pkzid['kz']===1}}">
+                <swiper class="goods-content-box2" indicator-dots="true" indicator-color="red"
+                  indicator-active-color="#ffffff" style="height:420rpx;">
+                  <block wx:for="{{mjkuangcai['data']['maijiakazhi']}}">
+                    <swiper-item>
+                      <view
+                        style="width:100%;display: flex;align-items: center;justify-content: center; background: url(https://1681.qunqing168.com{{item['titlepic']}})">
+
+
+                        <view
+                          style="display: flex;justify-content: center; align-items:center;width: 185rpx;height:150rpx;border:2rpx solid #ffffff;"
+                          data-id="{{item['id']}}" data-xm="kzid1" bindtap="kzxz" data-lm="61" data-xmm="kzjg"
+                          data-jg="{{item['tprice']}}">
+                          <view style="width:36rpx;height:36rpx;"><text class="carts-icon-num3"
+                              decode="{{true}}">&nbsp;1&nbsp;</text></view>
+                        </view>
+
+                        <view
+                          style="display: flex;justify-content: center; align-items:center;width: 185rpx;height:150rpx;border:2rpx solid #ffffff;"
+                          data-id="{{item['id']}}" data-xm="kzid2" bindtap="kzxz" data-lm="61" data-xmm="kzjg"
+                          data-jg="{{item['tprice']}}">
+                          <view style="width:36rpx;height:36rpx;"><text class="carts-icon-num3"
+                              decode="{{true}}">&nbsp;2&nbsp;</text></view>
+                        </view>
+
+                        <view
+                          style="display: flex;justify-content: center; align-items:center;width: 185rpx;height:150rpx;border:2rpx  solid #ffffff;"
+                          data-id="{{item['id']}}" data-xm="kzid3" bindtap="kzxz" data-lm="61" data-xmm="kzjg"
+                          data-jg="{{item['tprice']}}">
+                          <view style="width:36rpx;height:36rpx;"><text class="carts-icon-num3"
+                              decode="{{true}}">&nbsp;3&nbsp;</text></view>
+                        </view>
+
+                        <view
+                          style="display: flex;justify-content: center; align-items:center;width: 185rpx;height:150rpx;border:2rpx  solid #ffffff;"
+                          data-id="{{item['id']}}" data-xm="kzid" data-jg="{{item['tprice']}}" bindtap="kzxzqb">
+                          <view style="width:72rpx;height:36rpx;"><text class="carts-icon-num3"
+                              decode="{{true}}">全选</text></view>
+                        </view>
+
+                      </view>
+                      <view style="width:100%;margin-top:6px;" class="mini-btx" data-xzzid="1">
+                        <view style="width:100%;display: flex;justify-content: center; align-items:center;"
+                          class="mini-btx">
+                          <view style="width:108rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">一层宽
+                          </view>
+                          <view style="width:72rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">上下</view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"
+                            data-zhi="{{pkid['kz1g']>=2?pkid['kz1g']-1:pkid['kz1g']}}" data-xm="kz1g" bindtap="kdtz"
+                            data-lm="61">-
+                          </view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">
+                            {{pkid['kz1g']}}</view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:40rpx;"
+                            data-xm="kz1g" data-zhi="{{pkid['kz1g']*1+1}}" bindtap="kdtz" data-lm="61">+</view>
+
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"><text
+                              class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="kz1g" data-zhi="5"
+                              bindtap="kdtz" data-lm="61">&nbsp;5&nbsp;</text></view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid">
+                            <text class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="kz1g"
+                              data-zhi="10" bindtap="kdtz" data-lm="61">&nbsp;10&nbsp;</text>
+                          </view>
+
+
+                        </view>
+                      </view>
+                      <view style="width:100%;margin-top:6px;" class="mini-btx" data-xzzid="1">
+                        <view style="width:100%;display: flex;justify-content: center; align-items:center;"
+                          class="mini-btx">
+                          <view style="width:108rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">一层宽
+                          </view>
+                          <view style="width:72rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">左右</view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"
+                            data-zhi="{{pkid['kz1k']>=2?pkid['kz1k']-1:pkid['kz1k']}}" data-xm="kz1k" bindtap="kdtz"
+                            data-lm="61">-
+                          </view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">
+                            {{pkid['kz1k']}}</view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:40rpx;"
+                            data-xm="kz1k" data-zhi="{{pkid['kz1k']*1+1}}" bindtap="kdtz" data-lm="61">+</view>
+
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"><text
+                              class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="kz1k" data-zhi="5"
+                              bindtap="kdtz" data-lm="61">&nbsp;5&nbsp;</text></view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid">
+                            <text class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="kz1k"
+                              data-zhi="10" bindtap="kdtz" data-lm="61">&nbsp;10&nbsp;</text>
+                          </view>
+
+
+                        </view>
+                      </view>
+                      <view style="width:100%;margin-top:6px;" class="mini-btx" data-xzzid="1">
+                        <view style="width:100%;display: flex;justify-content: center; align-items:center;"
+                          class="mini-btx">
+                          <view style="width:108rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">二层宽
+                          </view>
+                          <view style="width:72rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"
+                            decode="{{true}}"> </view>
+
+
+
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"
+                            data-zhi="{{pkid['kz2k']>=2?pkid['kz2k']-1:pkid['kz2k']}}" data-xm="kz2k" bindtap="kdtz"
+                            data-lm="61">-
+                          </view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">
+                            {{pkid['kz2k']}}</view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:40rpx;"
+                            data-xm="kz2k" data-zhi="{{pkid['kz2k']*1+1}}" bindtap="kdtz" data-lm="61">+</view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">
+                            <text class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="kz2k"
+                              data-zhi="3" bindtap="kdtz" data-lm="61">&nbsp;3&nbsp;</text>
+                          </view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;"><text
+                              class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="kz2k"
+                              data-zhi="0.2" bindtap="kdtz" data-lm="61">&nbsp;0.2&nbsp;</text></view>
+
+
+                        </view>
+                      </view>
+                      <view style="width:100%;margin-top:6px;" class="mini-btx" data-xzzid="1">
+                        <view style="width:100%;display: flex;justify-content: center; align-items:center;"
+                          class="mini-btx">
+                          <view style="width:108rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">三层宽
+                          </view>
+                          <view style="width:72rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"
+                            decode="{{true}}"> </view>
+
+
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"
+                            data-zhi="{{pkid['kz3k']>=2?pkid['kz3k']-1:pkid['kz3k']}}" data-xm="kz3k" bindtap="kdtz"
+                            data-lm="61">-
+                          </view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">
+                            {{pkid['kz3k']}}</view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:40rpx;"
+                            data-xm="kz3k" data-zhi="{{pkid['kz3k']*1+1}}" bindtap="kdtz" data-lm="61">+</view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">
+                            <text class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="kz3k"
+                              data-zhi="3" bindtap="kdtz" data-lm="61">&nbsp;3&nbsp;</text>
+                          </view>
+                          <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;"><text
+                              class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="kz3k"
+                              data-zhi="0.2" bindtap="kdtz" data-lm="61">&nbsp;0.2&nbsp;</text></view>
+
+
+                        </view>
+                      </view>
+                    </swiper-item>
+                  </block>
+
+                </swiper>
+
+                <view class="flex-itemm" wx:if="{{scss[0][0]}}">
+                  <!---卡纸色彩---->
+
+                  <block wx:for="{{scss}}"><text class="flex-item3 bor {{item[0] === kzsc ?'red':''}}" bindtap="pksxykz"
+                      data-kzsc="{{item[0]}}" data-title="{{title}}" data-index='4' data-lm="61">{{item[0]}}</text>
+                  </block>
+                </view>
+
+                <view class="flex-itemm borr" wx:if="{{mjkuangcai['data']['totalkz']>12}}">
+                  <view class="mini-btt">{{mjkuangcai['data']['totalkz']}}</view>
+
+                  <view class="mini-btt" style="{{mjkuangcai['data']['pagekz']>1?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['pagekz']>1?'pksxykz':''}}"
+                    data-total="{{mjkuangcai['data']['totalkz']}}" data-page="{{mjkuangcai['data']['pagekz']}}"
+                    data-index='1' data-title="{{title}}" data-kzsc="{{kzsc}}" data-lm="61">上一页</view>
+                  <view class="mini-btt">{{mjkuangcai['data']['pagekz']}}</view>
+                  <view class="mini-btt"
+                    style="{{mjkuangcai['data']['totalkz']/12>mjkuangcai['data']['pagekz']?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['totalkz']/12>mjkuangcai['data']['pagekz']?'pksxykz':''}}"
+                    data-total="{{mjkuangcai['data']['totalkz']}}" data-page="{{mjkuangcai['data']['pagekz']}}"
+                    data-index='2' data-title="{{title}}" data-kzsc="{{kzsc}}" data-lm="61">下一页</view>
+                  <view class="mini-btt" bindtap="pksxykz" data-total="{{mjkuangcai['data']['totalkz']}}"
+                    data-page="{{mjkuangcai['data']['pagekz']}}" data-index='3' data-title="{{title}}" data-lm="61">随机
+                  </view>
+
+                </view>
+              </block>
+              <block wx:if="{{pkzid['kz']===2}}">
+                <swiper class="goods-content-box2" indicator-dots="true" indicator-color="red"
+                  indicator-active-color="#ffffff" style="height:250rpx;">
+
+                  <swiper-item>
+                    <view style="display: flex;justify-content: center; align-items:center;width: 100%;height:250rpx;">
+                      <block wx:for="{{mjkuangcai['data']['maijiabl']}}">
+                        <image style="width: 177rpx;height:177rpx;margin:5rpx;" bindtap="pksxyybbpic"
+                          data-id="{{item['id']}}" data-xm="blid" src="https://1681.qunqing168.com{{item['titlepic']}}">
+                        </image>
+                      </block>
+                    </view>
+
+
+
+                  </swiper-item>
+
+
+                </swiper>
+
+
+
+                <view class="flex-itemm borr" wx:if="{{mjkuangcai['data']['totalbl']>4}}">
+                  <view class="mini-btt">{{mjkuangcai['data']['totalbl']}}</view>
+
+                  <view class="mini-btt" style="{{mjkuangcai['data']['pagebl']>1?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['pagebl']>1?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbl']}}" data-page="{{mjkuangcai['data']['pagebl']}}"
+                    data-index='1' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabl'][0]['classid']}}">上一页
+                  </view>
+                  <view class="mini-btt">{{mjkuangcai['data']['pagebl']}}</view>
+                  <view class="mini-btt"
+                    style="{{mjkuangcai['data']['totalbl']/4>mjkuangcai['data']['pagebl']?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['totalbl']/4>mjkuangcai['data']['pagebl']?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbl']}}" data-page="{{mjkuangcai['data']['pagebl']}}"
+                    data-index='2' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabl'][0]['classid']}}">下一页
+                  </view>
+                  <view class="mini-btt" bindtap="pksxyybb" data-total="{{mjkuangcai['data']['totalbl']}}"
+                    data-page="{{mjkuangcai['data']['pagebl']}}" data-index='3' data-title="{{title}}"
+                    data-lm="{{mjkuangcai['data']['maijiabl'][0]['classid']}}">随机</view>
+
+                </view>
+              </block>
+              <block wx:if="{{pkzid['kz']===3}}">
+                <swiper class="goods-content-box2" indicator-dots="true" indicator-color="red"
+                  indicator-active-color="#ffffff" style="height:250rpx;">
+
+                  <swiper-item>
+                    <view style="display: flex;justify-content: center; align-items:center;width: 100%;height:250rpx;">
+                      <block wx:for="{{mjkuangcai['data']['maijiabb']}}">
+                        <image style="width: 177rpx;height:177rpx;margin:5rpx;" bindtap="pksxyybbpic"
+                          data-id="{{item['id']}}" data-xm="bbid" src="https://1681.qunqing168.com{{item['titlepic']}}">
+                        </image>
+                      </block>
+                    </view>
+
+
+
+                  </swiper-item>
+
+
+                </swiper>
+
+
+
+                <view class="flex-itemm borr" wx:if="{{mjkuangcai['data']['totalbb']>4}}">
+                  <view class="mini-btt">{{mjkuangcai['data']['totalbb']}}</view>
+
+                  <view class="mini-btt" style="{{mjkuangcai['data']['pagebb']>1?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['pagebb']>1?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbb']}}" data-page="{{mjkuangcai['data']['pagebb']}}"
+                    data-index='1' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabb'][0]['classid']}}">上一页
+                  </view>
+                  <view class="mini-btt">{{mjkuangcai['data']['pagebb']}}</view>
+                  <view class="mini-btt"
+                    style="{{mjkuangcai['data']['totalbb']/4>mjkuangcai['data']['pagebb']?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['totalbb']/4>mjkuangcai['data']['pagebb']?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbb']}}" data-page="{{mjkuangcai['data']['pagebb']}}"
+                    data-index='2' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabb'][0]['classid']}}">下一页
+                  </view>
+                  <view class="mini-btt" bindtap="pksxyybb" data-total="{{mjkuangcai['data']['totalbb']}}"
+                    data-page="{{mjkuangcai['data']['pagebb']}}" data-index='3' data-title="{{title}}"
+                    data-lm="{{mjkuangcai['data']['maijiabb'][0]['classid']}}">随机</view>
+
+
+                </view>
+              </block>
+            </view>
+            <view wx:if="{{xzxid === 6}}">
+
+              <image src="https://1681.qunqing168.com/actionn/showimg.php?{{pkpic[currentimg]}}" class="slide-image"
+                mode="widthFix" bindtap="gb" data-type="{{type}}" />
+
+              <view class="flex-itemm borr">
+
+                <view wx:if="{{mjkuangcai['successym']}}" class="mini-btt" bindtap="xzym" data-index="4">亚麻</view>
+                <view wx:elif="{{mjkuangcai['successnk']}}" class="mini-btt" bindtap="xzym" data-index="4">内框</view>
+                <view wx:else hidden="true"></view>
+                <view class="mini-btt" bindtap="kazhi" data-lm="61" data-index="5"
+                  hidden="{{!mjkuangcai['successkz']}}">卡纸</view>
+
+                <view view class="mini-btt red" bindtap="kazhi" data-lm="121" data-index="6"
+                  hidden="{{!mjkuangcai['successbh']}}">装裱</view>
+
+                <view view class="mini-btt" bindtap="xzzp" data-index="7">无</view>
+
+
+              </view>
+              <view class="flex-itemm borr">
+                <view class="mini-btt">国画装裱配框</view>
+                <view class="mini-btt {{pkzid['gh']==1?'red':''}}" bindtap="pkzid" data-id="1" data-xm="gh">裱绫</view>
+                <view class="mini-btt {{pkzid['gh']==2?'red':''}}" bindtap="pkzid" data-id="2" data-xm="gh">玻璃</view>
+                <view class="mini-btt {{pkzid['gh']==3?'red':''}}" bindtap="pkzid" data-id="3" data-xm="gh">背板</view>
+
+
+              </view>
+              <block wx:if="{{pkzid['gh']===1}}">
+                <swiper class="goods-content-box2" indicator-dots="true" indicator-color="red"
+                  indicator-active-color="#ffffff" style="height:220rpx;">
+
+                  <swiper-item>
+                    <view style="display: flex;justify-content: center; align-items:center;width: 100%;height:250rpx;">
+                      <block wx:for="{{mjkuangcai['data']['maijiabh']}}">
+                        <!-- <image style="width: 177rpx;height:177rpx;margin:5rpx;" data-id="{{item['id']}}" data-xm="bhid1"
+                          bindtap="kzxz" data-lm="121" src="https://1681.qunqing168.com{{item['titlepic']}}">
+                        </image> -->
+                        <view
+                          style="width: 177rpx;height:177rpx;margin:5rpx;background: url(https://1681.qunqing168.com{{item['titlepic']}}) "
+                          data-id="{{item['id']}}" data-xm="bhid1" bindtap="kzxz" data-lm="121" data-xmm="bhjg"
+                          data-jg="{{item['tprice']}}">
+                          {{item['tprice']}}</view>
+                      </block>
+                    </view>
+                  </swiper-item>
+                </swiper>
+
+                <view style="width:100%;margin-top:6px;" class="mini-btx" data-xzzid="1">
+                  <view style="width:100%;display: flex;justify-content: center; align-items:center;" class="mini-btx">
+                    <view style="width:108rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">宽度
+                    </view>
+                    <view style="width:72rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">上下</view>
+                    <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"
+                      data-zhi="{{pkid['bh1g']>=2?pkid['bh1g']-1:pkid['bh1g']}}" data-xm="bh1g" bindtap="kdtz"
+                      data-lm="121">-
+                    </view>
+                    <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">
+                      {{pkid['bh1g']}}</view>
+                    <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:40rpx;" data-xm="bh1g"
+                      data-zhi="{{pkid['bh1g']*1+1}}" bindtap="kdtz" data-lm="121">+</view>
+
+                    <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"><text
+                        class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="bh1g" data-zhi="5"
+                        bindtap="kdtz" data-lm="121">&nbsp;5&nbsp;</text></view>
+                    <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid">
+                      <text class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="bh1g" data-zhi="10"
+                        bindtap="kdtz" data-lm="121">&nbsp;10&nbsp;</text>
+                    </view>
+
+
+                  </view>
+                </view>
+                <view style="width:100%;margin-top:6px;" class="mini-btx" data-xzzid="1">
+                  <view style="width:100%;display: flex;justify-content: center; align-items:center;" class="mini-btx">
+                    <view style="width:108rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">宽度
+                    </view>
+                    <view style="width:72rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">左右</view>
+                    <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"
+                      data-zhi="{{pkid['bh1k']>=2?pkid['bh1k']-1:pkid['bh1k']}}" data-xm="bh1k" bindtap="kdtz"
+                      data-lm="121">-
+                    </view>
+                    <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;">
+                      {{pkid['bh1k']}}</view>
+                    <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:40rpx;" data-xm="bh1k"
+                      data-zhi="{{pkid['bh1k']*1+1}}" bindtap="kdtz" data-lm="121">+</view>
+
+                    <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid;margin-right:20rpx;"><text
+                        class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="bh1k" data-zhi="5"
+                        bindtap="kdtz" data-lm="121">&nbsp;5&nbsp;</text></view>
+                    <view style="width:36rpx;height:36rpx;border:#ffffff 1rpx solid">
+                      <text class="carts-icon-num3" wx:if="{{hasCarts}}" decode="{{true}}" data-xm="bh1k" data-zhi="10"
+                        bindtap="kdtz" data-lm="121">&nbsp;10&nbsp;</text>
+                    </view>
+
+
+                  </view>
+                </view>
+
+                <!--  </block> -->
+
+                <!-- </swiper> -->
+
+                <view class="flex-itemm" wx:if="{{scssbh[0][0]}}">
+                  <!---卡纸色彩---->
+
+                  <block wx:for="{{scssbh}}"><text class="flex-item3 bor {{item[0] === bhsc ?'red':''}}"
+                      bindtap="pksxykz" data-kzsc="{{item[0]}}" data-title="{{title}}" data-index='4'
+                      data-lm="121">{{item[0]}}</text></block>
+                </view>
+
+                <view class="flex-itemm borr" wx:if="{{mjkuangcai['data']['totalbh']>12}}">
+                  <view class="mini-btt">{{mjkuangcai['data']['totalbh']}}</view>
+
+                  <view class="mini-btt" style="{{mjkuangcai['data']['pagebh']>1?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['pagebh']>1?'pksxykz':''}}"
+                    data-total="{{mjkuangcai['data']['totalbh']}}" data-page="{{mjkuangcai['data']['pagebh']}}"
+                    data-index='1' data-title="{{title}}" data-kzsc="{{bhsc}}" data-lm="121">上一页</view>
+                  <view class="mini-btt">{{mjkuangcai['data']['pagebh']}}</view>
+                  <view class="mini-btt"
+                    style="{{mjkuangcai['data']['totalbh']/12>mjkuangcai['data']['pagebh']?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['totalbh']/12>mjkuangcai['data']['pagebh']?'pksxykz':''}}"
+                    data-total="{{mjkuangcai['data']['totalbh']}}" data-page="{{mjkuangcai['data']['pagebh']}}"
+                    data-index='2' data-title="{{title}}" data-kzsc="{{bhsc}}" data-lm="121">下一页</view>
+                  <view class="mini-btt" bindtap="pksxykz" data-total="{{mjkuangcai['data']['totalbh']}}"
+                    data-page="{{mjkuangcai['data']['pagebh']}}" data-index='3' data-title="{{title}}" data-lm="121">随机
+                  </view>
+
+                </view>
+              </block>
+              <block wx:if="{{pkzid['gh']===2}}">
+                <swiper class="goods-content-box2" indicator-dots="true" indicator-color="red"
+                  indicator-active-color="#ffffff" style="height:250rpx;">
+
+                  <swiper-item>
+                    <view style="display: flex;justify-content: center; align-items:center;width: 100%;height:250rpx;">
+                      <block wx:for="{{mjkuangcai['data']['maijiabl']}}">
+                        <!-- <image style="width: 177rpx;height:177rpx;margin:5rpx;" bindtap="pksxyybbpic"
+                          data-id="{{item['id']}}" data-xm="bhblid" data-xmm="bhbljg" data-jg="{{item['tprice']}}"
+                          src="https://1681.qunqing168.com{{item['titlepic']}}">
+                        </image> -->
+                        <view
+                          style="width: 177rpx;height:177rpx;margin:5rpx;background: url(https://1681.qunqing168.com{{item['titlepic']}}) no-repeat;background-size:100% auto;"
+                          bindtap="pksxyybbpic" data-id="{{item['id']}}" data-xm="bhblid" data-xmm="bhbljg"
+                          data-jg="{{item['tprice']}}">
+                          {{item['tprice']}}</view>
+                      </block>
+                    </view>
+
+
+
+                  </swiper-item>
+
+
+                </swiper>
+
+
+
+                <view class="flex-itemm borr" wx:if="{{mjkuangcai['data']['totalbl']>4}}">
+                  <view class="mini-btt">{{mjkuangcai['data']['totalbl']}}</view>
+
+                  <view class="mini-btt" style="{{mjkuangcai['data']['pagebl']>1?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['pagebl']>1?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbl']}}" data-page="{{mjkuangcai['data']['pagebl']}}"
+                    data-index='1' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabl'][0]['classid']}}">上一页
+                  </view>
+                  <view class="mini-btt">{{mjkuangcai['data']['pagebl']}}</view>
+                  <view class="mini-btt"
+                    style="{{mjkuangcai['data']['totalbl']/4>mjkuangcai['data']['pagebl']?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['totalbl']/4>mjkuangcai['data']['pagebl']?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbl']}}" data-page="{{mjkuangcai['data']['pagebl']}}"
+                    data-index='2' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabl'][0]['classid']}}">下一页
+                  </view>
+                  <view class="mini-btt" bindtap="pksxyybb" data-total="{{mjkuangcai['data']['totalbl']}}"
+                    data-page="{{mjkuangcai['data']['pagebl']}}" data-index='3' data-title="{{title}}"
+                    data-lm="{{mjkuangcai['data']['maijiabl'][0]['classid']}}">随机</view>
+
+                </view>
+              </block>
+              <block wx:if="{{pkzid['gh']===3}}">
+                <swiper class="goods-content-box2" indicator-dots="true" indicator-color="red"
+                  indicator-active-color="#ffffff" style="height:250rpx;">
+
+                  <swiper-item>
+                    <view style="display: flex;justify-content: center; align-items:center;width: 100%;height:250rpx;">
+                      <block wx:for="{{mjkuangcai['data']['maijiabb']}}">
+                        <image style="width: 177rpx;height:177rpx;margin:5rpx;" bindtap="pksxyybbpic"
+                          data-id="{{item['id']}}" data-xm="bhbbid" data-xmm="bhbbjg" data-jg="{{item['tprice']}}"
+                          src="https://1681.qunqing168.com{{item['titlepic']}}">
+                        </image>
+                        <view
+                          style="width: 177rpx;height:177rpx;margin:5rpx;background: url(https://1681.qunqing168.com{{item['titlepic']}}) no-repeat;background-size:100% auto;"
+                          bindtap="pksxyybbpic" data-id="{{item['id']}}" data-xm="bhbbid" data-xmm="bhbbjg"
+                          data-jg="{{item['tprice']}}">
+                          {{item['tprice']}}</view>
+                      </block>
+                    </view>
+
+
+
+                  </swiper-item>
+
+
+                </swiper>
+
+
+
+                <view class="flex-itemm borr" wx:if="{{mjkuangcai['data']['totalbb']>4}}">
+                  <view class="mini-btt">{{mjkuangcai['data']['totalbb']}}</view>
+
+                  <view class="mini-btt" style="{{mjkuangcai['data']['pagebb']>1?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['pagebb']>1?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbb']}}" data-page="{{mjkuangcai['data']['pagebb']}}"
+                    data-index='1' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabb'][0]['classid']}}">上一页
+                  </view>
+                  <view class="mini-btt">{{mjkuangcai['data']['pagebb']}}</view>
+                  <view class="mini-btt"
+                    style="{{mjkuangcai['data']['totalbb']/4>mjkuangcai['data']['pagebb']?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['totalbb']/4>mjkuangcai['data']['pagebb']?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbb']}}" data-page="{{mjkuangcai['data']['pagebb']}}"
+                    data-index='2' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabb'][0]['classid']}}">下一页
+                  </view>
+                  <view class="mini-btt" bindtap="pksxyybb" data-total="{{mjkuangcai['data']['totalbb']}}"
+                    data-page="{{mjkuangcai['data']['pagebb']}}" data-index='3' data-title="{{title}}"
+                    data-lm="{{mjkuangcai['data']['maijiabb'][0]['classid']}}">随机</view>
+
+
+                </view>
+              </block>
+            </view>
+
+
+            <view wx:if="{{xzxid === 7}}">
+              <image src="https://1681.qunqing168.com/actionn/showimg.php?{{pkpic[currentimg]}}" class="slide-image"
+                mode="widthFix" bindtap="gb" data-type="{{type}}" />
+
+              <view class="flex-itemm borr">
+
+                <view wx:if="{{mjkuangcai['successym']}}" class="mini-btt" bindtap="xzym" data-index="4">亚麻</view>
+                <view wx:elif="{{mjkuangcai['successnk']}}" class="mini-btt" bindtap="xzym" data-index="4">内框</view>
+                <view wx:else hidden="true"></view>
+                <view class="mini-btt" bindtap="kazhi" data-lm="61" data-index="5"
+                  hidden="{{!mjkuangcai['successkz']}}">卡纸</view>
+
+                <view view class="mini-btt" bindtap="kazhi" data-lm="121" data-index="6"
+                  hidden="{{!mjkuangcai['successbh']}}">装裱</view>
+
+                <view view class="mini-btt red" bindtap="xzzp" data-index="7">无</view>
+
+
+              </view>
+              <view class="flex-itemm borr">
+                <view class="mini-btt">照片:</view>
+                <view class="mini-btt {{pkzid['zp']==1?'red':''}}" bindtap="pkzid" data-id="1" data-xm="zp">玻璃</view>
+                <view class="mini-btt {{pkzid['zp']==2?'red':''}}" bindtap="pkzid" data-id="2" data-xm="zp">背板</view>
+
+
+              </view>
+
+              <block wx:if="{{pkzid['zp']===1}}">
+                <swiper class="goods-content-box2" indicator-dots="true" indicator-color="red"
+                  indicator-active-color="#ffffff" style="height:250rpx;">
+
+                  <swiper-item>
+                    <view style="display: flex;justify-content: center; align-items:center;width: 100%;height:250rpx;">
+                      <block wx:for="{{mjkuangcai['data']['maijiabl']}}">
+                        <!-- <image style="width: 177rpx;height:177rpx;margin:5rpx;" bindtap="pksxyybbpic"
+                          data-id="{{item['id']}}" data-xm="zpblid" data-xmm="zpbljg" data-jg="{{item['tprice']}}"
+                          src="https://1681.qunqing168.com{{item['titlepic']}}">
+                        </image> -->
+                        <view
+                          style="width: 177rpx;height:177rpx;margin:5rpx;background: url(https://1681.qunqing168.com{{item['titlepic']}}) no-repeat;background-size:100% auto;"
+                          bindtap="pksxyybbpic" data-id="{{item['id']}}" data-xm="zpblid" data-xmm="zpbljg"
+                          data-jg="{{item['tprice']}}">
+                          {{item['tprice']}}</view>
+
+
+                      </block>
+                    </view>
+
+
+
+                  </swiper-item>
+
+
+                </swiper>
+
+
+
+                <view class="flex-itemm borr" wx:if="{{mjkuangcai['data']['totalbl']>4}}">
+                  <view class="mini-btt">{{mjkuangcai['data']['totalbl']}}</view>
+
+                  <view class="mini-btt" style="{{mjkuangcai['data']['pagebl']>1?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['pagebl']>1?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbl']}}" data-page="{{mjkuangcai['data']['pagebl']}}"
+                    data-index='1' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabl'][0]['classid']}}">上一页
+                  </view>
+                  <view class="mini-btt">{{mjkuangcai['data']['pagebl']}}</view>
+                  <view class="mini-btt"
+                    style="{{mjkuangcai['data']['totalbl']/4>mjkuangcai['data']['pagebl']?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['totalbl']/4>mjkuangcai['data']['pagebl']?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbl']}}" data-page="{{mjkuangcai['data']['pagebl']}}"
+                    data-index='2' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabl'][0]['classid']}}">下一页
+                  </view>
+                  <view class="mini-btt" bindtap="pksxyybb" data-total="{{mjkuangcai['data']['totalbl']}}"
+                    data-page="{{mjkuangcai['data']['pagebl']}}" data-index='3' data-title="{{title}}"
+                    data-lm="{{mjkuangcai['data']['maijiabl'][0]['classid']}}">随机</view>
+
+                </view>
+              </block>
+              <block wx:if="{{pkzid['zp']===2}}">
+                <swiper class="goods-content-box2" indicator-dots="true" indicator-color="red"
+                  indicator-active-color="#ffffff" style="height:250rpx;">
+
+                  <swiper-item>
+                    <view style="display: flex;justify-content: center; align-items:center;width: 100%;height:250rpx;">
+                      <block wx:for="{{mjkuangcai['data']['maijiabb']}}">
+                        <!-- <image style="width: 177rpx;height:177rpx;margin:5rpx;" bindtap="pksxyybbpic"
+                          data-id="{{item['id']}}" data-xm="zpbbid" data-xmm="zpbbjg" data-jg="{{item['tprice']}}"
+                          src="https://1681.qunqing168.com{{item['titlepic']}}">
+                        </image> -->
+                        <view
+                          style="width: 177rpx;height:177rpx;margin:5rpx;background: url(https://1681.qunqing168.com{{item['titlepic']}}) no-repeat;background-size:100% auto;"
+                          bindtap="pksxyybbpic" data-id="{{item['id']}}" data-xm="zpbbid" data-xmm="zpbbjg"
+                          data-jg="{{item['tprice']}}">
+                          {{item['tprice']}}</view>
+                      </block>
+                    </view>
+
+
+
+                  </swiper-item>
+
+
+                </swiper>
+
+
+
+                <view class="flex-itemm borr" wx:if="{{mjkuangcai['data']['totalbb']>4}}">
+                  <view class="mini-btt">{{mjkuangcai['data']['totalbb']}}</view>
+
+                  <view class="mini-btt" style="{{mjkuangcai['data']['pagebb']>1?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['pagebb']>1?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbb']}}" data-page="{{mjkuangcai['data']['pagebb']}}"
+                    data-index='1' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabb'][0]['classid']}}">上一页
+                  </view>
+                  <view class="mini-btt">{{mjkuangcai['data']['pagebb']}}</view>
+                  <view class="mini-btt"
+                    style="{{mjkuangcai['data']['totalbb']/4>mjkuangcai['data']['pagebb']?'':'color:#ffffff'}};"
+                    bindtap="{{mjkuangcai['data']['totalbb']/4>mjkuangcai['data']['pagebb']?'pksxyybb':''}}"
+                    data-total="{{mjkuangcai['data']['totalbb']}}" data-page="{{mjkuangcai['data']['pagebb']}}"
+                    data-index='2' data-title="{{title}}" data-lm="{{mjkuangcai['data']['maijiabb'][0]['classid']}}">下一页
+                  </view>
+                  <view class="mini-btt" bindtap="pksxyybb" data-total="{{mjkuangcai['data']['totalbb']}}"
+                    data-page="{{mjkuangcai['data']['pagebb']}}" data-index='3' data-title="{{title}}"
+                    data-lm="{{mjkuangcai['data']['maijiabb'][0]['classid']}}">随机</view>
+
+
+                </view>
+              </block>
+            </view>
+
+
+
+          </block>
+
+          <block wx:else>
+
+            <swiper indicator-dots="{{indicatorDots}}" vertical="{{vertical}}" autoplay="{{autoplay}}"
+              duration="{{duration}}" interval='{{interval}}' bindanimationfinish="bindchange" circular="{{circular}}"
+              style="height:{{jubugao?450:imgheights[current]+230}}rpx;" current="{{current}}">
+
+              <block wx:for="{{mjkuangcai['data']['maijiakuangtiao']}}" wx:key="index">
+
+                <swiper-item>
+                  <block wx:if="{{jubu}}">
+                    <view style="width:100%;">
+
+                      <view
+                        style="display: flex;justify-content: center; align-items:center;width: 100%;height:450rpx;margin-bottom:10rpx;">
+
+                        <view
+                          style="width:450rpx;height:450rpx;background:red;background: url(https://1681.qunqing168.com/actionn/showimg.php?{{pkpic[index]}}) no-repeat;background-size:550%;"
+                          bindtap="jubu"></view>
+
+                      </view>
+
+                    </view>
+                  </block>
+                  <block wx:else>
+                    <view
+                      style="display: flex;justify-content: center; align-items:center;width: 100%;height:{{imgheights[current]}}rpx;margin-bottom:0rpx;">
+                      <image data-src="https://1681.qunqing168.com/actionn/showimg.php?{{pkpic[index]}}"
+                        src="https://1681.qunqing168.com/actionn/showimg.php?{{pkpic[index]}}" data-id='{{index}}'
+                        class="slide-image" mode="widthFix" data-width="{{goods['kuang']}}"
+                        data-height="{{goods['gao']}}"
+                        data-wkkuan="{{mjkuangcai['data']['maijiakuangtiao'][index]['kuangdu']}}" bindload="imageLoad"
+                        bindtap="previewImagee" data-ymid="{{pkid['ymid']}}" />
+                    </view>
+                  </block>
+
+                  <!-- <text style="width:100%;height:150rpx;" wx:for="{{mjkuangcai['data']['maijiakuangtiao'][index]}}">{{index}}:{{item}}</text> -->
+                  <view class="flex-wrp2" style="flex-direction:column;">
+                    <view class="flex-itemm">
+                      <view class="flex-item3">型号:{{mjkuangcai['data']['maijiakuangtiao'][index]['title']}}
+                        宽:{{mjkuangcai['data']['maijiakuangtiao'][index]['kuangdu']}}
+                        厚:{{mjkuangcai['data']['maijiakuangtiao'][index]['gaodu']}}
+                        一米:￥{{mjkuangcai['data']['maijiakuangtiao'][index]['tprice']}} 总价:￥{{pkzjg[index]}}
+                      </view>
+                      <!-- <view class="flex-item3">
+                      厚{{mjkuangcai['data']['maijiakuangtiao'][index]['gaodu']}}
+                    </view>
+
+                    <view class="flex-item3">￥{{mjkuangcai['data']['maijiakuangtiao'][index]['price']}}</view>
+
+                    <view class="flex-item3">总价：￥000</view> -->
+
+                    </view>
+                    <view class="flex-itemm">
+
+                      <view class="flex-item3 bor {{xzid === 0 ?'red':''}}" bindtap="xz" data-index="0">
+                        {{mjkuangcai['data']['maijiakuangtiao'][index]['cailiao']}}</view>
+                      <view class="flex-item2 bor {{xzid === 1 ?'red':''}}" bindtap="xz" data-index="1">
+                        {{mjkuangcai['data']['maijiakuangtiao'][index]['wksc']}}</view>
+                      <view class="flex-item2 bor {{xzid === 2 ?'red':''}}" bindtap="xz" data-index="2">
+                        {{mjkuangcai['data']['maijiakuangtiao'][index]['ktfg']}}</view>
+                      <view class="flex-item3 bor {{xzid === 3 ?'red':''}}" bindtap="xz" data-index="3">
+                        宽{{mjkuangcai['data']['maijiakuangtiao'][index]['kuangdu']}}
+                      </view>
+                      <view class="flex-item3 bor"
+                        bindtap="{{mjkuangcai['successym']?'xz':(mjkuangcai['successkz']?'xz':'')}}"
+                        data-index="{{xzxid}}" hidden="{{!mjkuangcai['successym']}}"
+                        hidden="{{!mjkuangcai['successkz']}}"
+                        data-wkid="{{mjkuangcai['data']['maijiakuangtiao'][index]['id']}}">
+                        自由搭配</view>
+
+                      <view class="flex-item2 bor {{xzid === 6 ?'red':''}}" bindtap="jubu" data-index="6">局部</view>
+
+                    </view>
+
+                    <view wx:if="{{xz}}" class="flex-itemm itemmgao">
+
+                      <block wx:if="{{xzid === 0}}">
+                        <view class="mini-btt">型号:</view>
+                        <view class="mini-bt {{buxian['xh'] === 1 ?'red':''}}" bindtap="xuanzhe" data-xm="cailiao"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['cailiao']}}" data-xzzid="1">不 看
+                        </view>
+                        <view class="mini-bt {{buxian['xh'] === 2 ?'red':''}}" bindtap="xuanzhe" data-xm="cailiao"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['cailiao']}}" data-xzzid="2">只 看
+                        </view>
+                        <view class="mini-bt {{buxian['xh'] === 3 ?'red':''}}" bindtap="xuanzhe" data-xm="cailiao"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['cailiao']}}" data-xzzid="3">不 限
+                        </view>
+
+
+
+                      </block>
+                      <block wx:if="{{xzid === 1}}">
+
+                        <view class="mini-btt">色彩:</view>
+                        <view class="mini-bt {{buxian['sc'] === 1 ?'red':''}}" bindtap="xuanzhe" data-xm="wksc"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['wksc']}}" data-xzzid="1">不 看
+                        </view>
+                        <view class="mini-bt {{buxian['sc'] === 2 ?'red':''}}" bindtap="xuanzhe" data-xm="wksc"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['wksc']}}" data-xzzid="2">只 看
+                        </view>
+                        <view class="mini-bt {{buxian['sc'] === 3 ?'red':''}}" bindtap="xuanzhe" data-xm="wksc"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['wksc']}}" data-xzzid="3">不 限
+                        </view>
+
+                      </block>
+                      <block wx:if="{{xzid === 2}}">
+
+                        <view class="mini-btt">风格:</view>
+                        <view class="mini-bt {{buxian['fg'] === 1 ?'red':''}}" bindtap="xuanzhe" data-xm="ktfg"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['ktfg']}}" data-xzzid="1">不 看
+                        </view>
+                        <view class="mini-bt {{buxian['fg'] === 2 ?'red':''}}" bindtap="xuanzhe" data-xm="ktfg"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['ktfg']}}" data-xzzid="2">只 看
+                        </view>
+                        <view class="mini-bt {{buxian['fg'] === 3 ?'red':''}}" bindtap="xuanzhe" data-xm="ktfg"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['ktfg']}}" data-xzzid="3">不 限
+                        </view>
+
+                      </block>
+                      <block wx:if="{{xzid === 3}}">
+                        <view class="mini-btt">宽度:</view>
+                        <view class="mini-bt {{buxian['kd'] === 1 ?'red':''}}" bindtap="xuanzhe" data-xm="kuangdu"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['kuangdu']}}" data-xzzid="1">
+                          不看＜{{mjkuangcai['data']['maijiakuangtiao'][index]['kuangdu']}}</view>
+                        <view class="mini-bt {{buxian['kd'] === 2 ?'red':''}}" bindtap="xuanzhe" data-xm="kuangdu"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['kuangdu']}}" data-xzzid="2">
+                          不看＞{{mjkuangcai['data']['maijiakuangtiao'][index]['kuangdu']}}</view>
+                        <view class="mini-bt {{buxian['kd'] === 3 ?'red':''}}" bindtap="xuanzhe" data-xm="kuangdu"
+                          data-xztj="{{mjkuangcai['data']['maijiakuangtiao'][index]['kuangdu']}}" data-xzzid="3">不限
+                        </view>
+
+
+
+                      </block>
+
+
+
+
+
+                    </view>
+
+                    <view class="flex-itemm">
+                      <view class="flex-item3">
+
+                        <image
+                          src="https://1681.qunqing168.com{{mjkuangcai['data']['maijiakuangtiao'][index]['titlepic']}}"
+                          style="width:200rpx;" mode="widthFix"></image>
+                      </view>
+                      <!-- <view class="flex-item2 bor">收藏</view>
+                    <view class="flex-item3 bor">购买外框须知</view> -->
+                      <view class="mini-bt">收藏</view>
+                      <view class="mini-bt">购买外框须知</view>
+                    </view>
+
+                  </view>
+                  <!-- <view style="width:100%;height:150rpx;"></view> -->
+                </swiper-item>
+              </block>
+            </swiper>
+
+            <view wx:if="{{mjkuangcai['data']['success']}}" wx:if="{{mjkuangcai['data']['total']>12}}"
+              class="flex-itemm borr">
+              <view class="mini-btt">{{mjkuangcai['data']['total']}}</view>
+              <view class="mini-btt" style="{{mjkuangcai['data']['page']>1?'':'color:#ffffff'}};"
+                bindtap="{{mjkuangcai['data']['page']>1?'pksxy':''}}" data-total="{{mjkuangcai['data']['total']}}"
+                data-page="{{mjkuangcai['data']['page']}}" data-index='1' data-title="{{title}}">上一页</view>
+              <view class="mini-btt">{{mjkuangcai['data']['page']}}</view>
+              <view class="mini-btt"
+                style="{{mjkuangcai['data']['total']/12>mjkuangcai['data']['page']?'':'color:#ffffff'}};"
+                bindtap="{{mjkuangcai['data']['total']/12>mjkuangcai['data']['page']?'pksxy':''}}"
+                data-total="{{mjkuangcai['data']['total']}}" data-page="{{mjkuangcai['data']['page']}}" data-index='2'
+                data-title="{{title}}">下一页</view>
+              <view class="mini-btt" bindtap="pksxy" data-total="{{mjkuangcai['data']['total']}}"
+                data-page="{{mjkuangcai['data']['page']}}" data-index='3' data-title="{{title}}">随机</view>
+            </view>
+
+
+          </block>
+
+
+          <view class="martop">
+            <image bindtap="pkmaijia" class='left padding' data-id="{{mjkuangcai['data']['id']}}"
+              src="https://1681.qunqing168.com{{mjkuangcai['data']['titlepic']}}"
+              style="width: 80rpx;height:90rpx;border-radius:50%;"></image>
+            <view class="right" style="display:{{(xzid === 4||xzid === 5|| xzid === 6||xzid === 7)?'none':'block'}}">
+              <icon bindtap="suiji2" color='red' type="search" data-id="{{mjkuangcai['data']['id']}}" data-xm="1"
+                size="35"></icon>
+              <view>{{distance_new}}km</view>
+            </view>
+            {{mjkuangcai['data']['title']}}
+            店铺：{{mjkuangcai['data']['dpmc']}} {{mjkuangcai['data']['lxsj']}}
+            <view>
+              {{mjkuangcai['data']['pro']}}*{{mjkuangcai['data']['city']}}*{{mjkuangcai['data']['area']}}*{{mjkuangcai['data']['xz']}}
+
+            </view>
+
+          </view>
+
+
+          <!-- <view class="flex-itemm"> -->
+
+          <view class="flex-item3 jzdq" style="width:100%;" bindtap="chooseAddress"
+            data-provinceName="{{addressInfo.provinceName}}" data-cityName="{{addressInfo.cityName}}"
+            data-countyName="{{addressInfo.countyName}}"> 附 近 配 框 卖 家 <icon color='red' type="search" size="20"></icon>
+          </view>
+          <view
+            style="width:100%;  background: url(https://1681.qunqing168.com/d/file/2017-01-17/8783ce47da48a27744f4c4e4ef681708.jpg);">
+            <view class="flex-item3 jzdq carts-icon-num4" style="width:100%;">
+              商家提示： 买画就送配框劵 可抵配框费用,先买画后并收货无异议后 再配框下单 才可使用。建议：先将喜欢的框进行收藏。等画芯到手后，到收藏中心购买外框
+            </view>
+            <view style="width:100%;display: flex;align-items: center;justify-content: center;">
+
+              <view style="display: flex;justify-content: center; align-items:center;width: 100%;height:100rpx;">
+                <text class="carts-icon-num4"
+                  decode="{{true}}">&nbsp;&nbsp;&nbsp;配框抵用劵&nbsp;&nbsp;&nbsp;&nbsp;￥{{goods['coupon']}}&nbsp;</text>
+              </view>
+            </view>
+          </view>
+
+
+          <!-- <view class="flex-item3 bor" bindtap="chooseAddresss">修改定位</view> -->
+          <!-- </view> -->
+        </view>
+
+
+        <block wx:for="{{imgUrls}}" wx:key="key">
+
+
+
+          <image mode="widthFix" class="gs-ct-bx-image" src="{{item}}" />
+
+        </block>
+
+      </view>
+
+      <image mode="widthFix" class="contentimage" wx:if="{{goods['content']}}"
+        src="https://1681.qunqing168.com{{goods['content']}}" />
+      <image mode="widthFix" class="contentimage" wx:if="{{goods['content2']}}"
+        src="https://1681.qunqing168.com{{goods['content2']}}" />
+      <view class="button-x"><text class="border-line"></text></view>
+    </view>
+
+    <view class="goods-box4" wx:if="{{curIndex === 4}}">
+      <view>猜您在这:
+        {{addressInfo.provinceName}}-{{addressInfo.cityName}}-{{addressInfo.countyName}} <text class="flex-item3 bor"
+          bindtap="chooseAddresss">重新定位</text></view>
+
+
+      <view class="flex-itemm">
+        <view class="flex-item3 jzdq {{fjxz==2?'fjxz':''}}" style="width:47%;" bindtap="citysss"> 城 市 <icon color='red'
+            type="search" size="20"></icon>
+        </view>
+        <view class="flex-item3 jzdq {{fjxz==1?'fjxz':''}}" style="width:47%;" bindtap="chooseAddress"
+          data-provinceName="{{addressInfo.provinceName}}" data-cityName="{{addressInfo.cityName}}"
+          data-countyName="{{addressInfo.countyName}}"> 附 近 <icon color='red' type="search" size="20"></icon>
+        </view>
+      </view>
+      <block wx:if="{{fjxz==2}}">
+        <view wx:for="{{citysss}}">
+          <view style="width:100%;height:auto;border: 2rpx solid #cccccc;">
+            <view style="text-align:left;"><text decode="{{true}}" style="color:#aeb0b3;">&nbsp;{{item['pro']}}</text>
+            </view>
+            <view style="text-align:left;" wx:for="{{item['city']}}">
+              <text decode="{{true}}" style="color:#aeb0b3;">&nbsp;{{item['city']}}:&nbsp;</text>
+              <!-- <view style="text-align:left;"> -->
+              <text wx:for="{{item['area']}}" decode="{{true}}" bindtap="citysousuo" data-pro="{{item['pro']}}"
+                data-city="{{item['city']}}" data-area="{{item['area']}}">&nbsp;{{item['area']}}&nbsp;</text>
+              <!-- </view> -->
+            </view>
+
+
+          </view>
+        </view>
+      </block>
+
+      <block wx:if="{{fjxz==1}}">
+        <block wx:if="{{fjktsuccess}}">
+          <view class="martop" wx:for="{{sskmaijia}}">
+            <image bindtap="suiji2" data-id="{{item['id']}}" data-xm="2" class='left padding'
+              src="https://1681.qunqing168.com{{item['titlepic']}}"
+              style="width: 80rpx;height:90rpx;border-radius:50%;">
+            </image>
+            <view class="right" style="width:120rpx;height:90rpx;margin-right:40rpx;">{{item['juli']}}km
+              <view bindtap="cakanweizhi" data-latitude="{{item['latitude']*1000000}}"
+                data-longitude="{{item['longitude']*1000000}}" style="font-size: 25rpx;;color:red">查看位置</view>
+            </view>
+            <view style="text-align:left;">
+              <!-- {{item['title']}}
+            店铺： -->{{item['dpmc']}} {{item['lxsj']}}
+            </view>
+            <view style="text-align:left;font-size: 25rpx;color:#aeb0b3;">
+              {{item['pro']}}*{{item['city']}}*{{item['area']}}
+            </view>
+            <view style="text-align:left;">
+              {{item['xz']}}
+
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view style="margin-top:200rpx;">很遗憾！没有查到附近的做框卖家</view>
+        </block>
+      </block>
+    </view>
+
+    <view class="goods-box3" wx:if="{{curIndex === 1}}">
+      <view>商品所在地址：{{goods['pro']}}*{{goods['city']}}*{{goods['area']}}</view>
+    </view>
+    <view class="goods-box3" wx:if="{{curIndex === 2}}">
+      <view>商家信息</view>
+      <view>商家：<image src="https://1681.qunqing168.com{{goods['maijia']['titlepic']}}"
+          style="width: 80rpx;height:80rpx;border-radius:50%;"></image>店铺名称：<text
+          class="goods-price">【{{goods['maijia']['dpmc']}}】</text></view>
+      <view>联系电话{{goods['maijia']['lxsj']}}</view>
+      <view>联系电话{{goods['maijia']['bdgdzlm']}}</view>
+
+    </view>
+    <view class="goods-box3" wx:if="{{curIndex === 3}}" style="margin-bottom:120rpx;">
+      <view style="height:auto;display: flex;padding:0 10rpx;">
+        <view style="width:150rpx;">服务态度：</view>
+        <view style="width:550rpx;"><progress percent="{{bindTaphaoping2['fwtd']}}" show-info stroke-width="13" />
+        </view>
+      </view>
+      <view style="height:auto;display: flex;padding:0 10rpx;">
+        <view style="width:150rpx;">商品质量：</view>
+        <view style="width:550rpx;"><progress percent="{{bindTaphaoping2['spzl']}}" show-info stroke-width="13" />
+        </view>
+      </view>
+      <view style="height:auto;display: flex;padding:0 10rpx;">
+        <view style="width:150rpx;">快递速度：</view>
+        <view style="width:550rpx;"><progress percent="{{bindTaphaoping2['kdsd']}}" show-info stroke-width="13" />
+        </view>
+      </view>
+      <view style="width:100%;height:auto;display: flex;flex-direction: row;justify-content: center;">
+        <view class="flex-item3 bor {{hpzt ==='' && ksfyt===0?'red':''}}" bindtap="bindTaphaoping" data-index="33"
+          data-hpzt="" data-ksfyt="0" data-maijia="{{goods['maijia']['title']}}">全部({{bindTaphaoping2['num']}})</view>
+        <view class="flex-item3 bor {{hpzt ==='好评' && ksfyt===0?'red':''}}" bindtap="bindTaphaoping" data-index="33"
+          data-hpzt="好评" data-ksfyt="0" data-maijia="{{goods['maijia']['title']}}">好评({{bindTaphaoping2['num1']}})
+        </view>
+        <view class="flex-item3 bor {{hpzt ==='中评' && ksfyt===0?'red':''}}" bindtap="bindTaphaoping" data-index="33"
+          data-hpzt="中评" data-ksfyt="0" data-maijia="{{goods['maijia']['title']}}">中评({{bindTaphaoping2['num2']}})
+        </view>
+        <view class="flex-item3 bor {{hpzt ==='差评' && ksfyt===0?'red':''}}" bindtap="bindTaphaoping" data-index="33"
+          data-hpzt="差评" data-ksfyt="0" data-maijia="{{goods['maijia']['title']}}">差评({{bindTaphaoping2['num3']}})
+        </view>
+        <view class="flex-item3 bor {{hpzt ==='' && ksfyt===1?'red':''}}" bindtap="bindTaphaoping" data-index="33"
+          data-hpzt="" data-ksfyt="1" data-maijia="{{goods['maijia']['title']}}">有图({{bindTaphaoping2['num4']}})</view>
+      </view>
+
+      <block wx:for="{{bindTaphaoping}}" wx:key="index">
+        <block wx:if="{{bindTaphaoping2['success']}}">
+          <view class="goods-content">
+            <view style="width:100%;height:1px;background:green"></view>
+            <view wx:for="{{bindTaphaoping[index]}}" wx:key="index"
+              style="width:100%;height:auto;margin-bottom:10rpx;text-align:left;">
+
+              <view>订单号{{item['ddno']}}订单ID{{item['ddid']}}</view>
+              <view>
+                <!-- 卖家:{{item['maijia']}} -->会员:{{item['truename']}}
+                <!-- 综合好评({{item['fwtd']*1+item['spzl']*1+item['kdsd']*1}}颗★) -->
+              </view>
+              <view>
+                态度:
+                <text wx:if="{{item['fwtd']==5}}" style="color:red;">★★★★★</text>
+                <text wx:elif="{{item['fwtd']==4}}" style="color:red;">★★★★</text>
+                <text wx:elif="{{item['fwtd']==3}}" style="color:red;">★★★</text>
+                <text wx:elif="{{item['fwtd']==2}}" style="color:green;">★★</text>
+                <text wx:else="{{item['fwtd']==1}}" style="color:green;">★</text>
+
+
+                质量:
+                <text wx:if="{{item['spzl']==5}}" style="color:red;">★★★★★</text>
+                <text wx:elif="{{item['spzl']==4}}" style="color:red;">★★★★</text>
+                <text wx:elif="{{item['spzl']==3}}" style="color:red;">★★★</text>
+                <text wx:elif="{{item['spzl']==2}}" style="color:green;">★★</text>
+                <text wx:else="{{item['spzl']==1}}" style="color:green;">★</text>
+
+
+                快递:
+                <text wx:if="{{item['kdsd']==5}}" style="color:red;">★★★★★</text>
+                <text wx:elif="{{item['kdsd']==4}}" style="color:red;">★★★★</text>
+                <text wx:elif="{{item['kdsd']==3}}" style="color:red;">★★★</text>
+                <text wx:elif="{{item['kdsd']==2}}" style="color:green;">★★</text>
+                <text wx:else="{{item['kdsd']==1}}" style="color:green;">★</text>
+
+
+
+                <text wx:if="{{item['hpjx']==0}}"> 加星:
+                  <text wx:if="{{item['hpjx']==5}}" style="color:red;">★★★★★</text>
+                  <text wx:elif="{{item['hpjx']==4}}" style="color:red;">★★★★</text>
+                  <text wx:elif="{{item['hpjx']==3}}" style="color:red;">★★★</text>
+                  <text wx:elif="{{item['hpjx']==2}}" style="color:green;">★★</text>
+                  <text wx:else="{{item['hpjx']==1}}" style="color:green;">★</text>
+                </text>
+
+              </view>
+
+              <!-- <view>好评状态{{item['hpzt']}}好评显示{{item['hpxs']}}</view> -->
+              <block wx:for="{{item['pic']}}" wx:key="*this">
+                <image style="width:100rpx;height:100rpx;" src="https://1681.qunqing168.com{{item['titlepic']}}"
+                  bindtap="spxqy" data-lmid="{{item['lmid']}}" data-lmzid="{{item['lmzid']}}"
+                  data-dldp="{{item['dldp']}}" data-dpsjhym="{{item['dpsjhym']}}"></image>
+
+              </block>
+              <view>买家初评:{{item['mjcp']}}</view>
+              <view wx:if="{{item['sjzp']}}">商家追评:{{item['sjzp']}}</view>
+              <view wx:if="{{item['ksfyt']==1}}" style="height:auto;display: flex;padding:0 10rpx;">
+                <view
+                  style="width:100rpx;height:100rpx;margin:2rpx;justify-content: center;display: flex;line-height: 100rpx;">
+                  <text>买家图:</text></view>
+                <view wx:for="{{bindTaphaoping2['kft'][index]}}">
+                  <image wx:if="{{item['kpic1']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                    src="https://1681.qunqing168.com{{item['kpic1']}}" />
+                  <image wx:if="{{item['kpic2']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                    src="https://1681.qunqing168.com{{item['kpic2']}}" />
+                  <image wx:if="{{item['kpic3']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                    src="https://1681.qunqing168.com{{item['kpic3']}}" />
+                  <image wx:if="{{item['kpic4']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                    src="https://1681.qunqing168.com{{item['kpic4']}}" />
+                  <image wx:if="{{item['kpic5']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                    src="https://1681.qunqing168.com{{item['kpic5']}}" />
+                </view>
+              </view>
+              <view wx:if="{{item['ssfyt']==1}}" style="height:auto;display: flex;padding:0 10rpx;">
+                <view
+                  style="width:100rpx;height:100rpx;margin:2rpx;justify-content: center;display: flex;line-height: 100rpx;">
+                  商家图:</view>
+                <view wx:for="{{bindTaphaoping2['sft'][index]}}">
+                  <image wx:if="{{item['kpic1']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                    src="https://1681.qunqing168.com{{item['kpic1']}}" />
+                  <image wx:if="{{item['kpic2']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                    src="https://1681.qunqing168.com{{item['kpic2']}}" />
+                  <image wx:if="{{item['kpic3']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                    src="https://1681.qunqing168.com{{item['kpic3']}}" />
+                  <image wx:if="{{item['kpic4']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                    src="https://1681.qunqing168.com{{item['kpic4']}}" />
+                  <image wx:if="{{item['kpic5']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                    src="https://1681.qunqing168.com{{item['kpic5']}}" />
+                </view>
+              </view>
+              <view>{{item['newstime']}}</view>
+              <view style="width:100%;height:1px;background:green"></view>
+            </view>
+          </view>
+        </block>
+      </block>
+      <view wx:if="{{hpindex==bindTaphaoping2['page']-1}}">
+        <view wx:if="{{bindTaphaoping2['total']>12}}" class="flex-itemm borr">
+          <view class="mini-btt">{{bindTaphaoping2['total']}}</view>
+          <view class="mini-btt" style="{{bindTaphaoping2['page']>1?'':'color:#ffffff'}};"
+            bindtap="{{bindTaphaoping2['page']>1?'bindTaphaoping':''}}" data-index='3'
+            data-maijia="{{goods['maijia']['title']}}">首页</view>
+          <view class="mini-btt" style="{{bindTaphaoping2['page']>1?'':'color:#ffffff'}};"
+            bindtap="{{bindTaphaoping2['page']>1?'bindTaphaoping':''}}" data-total="{{bindTaphaoping2['total']}}"
+            data-page="{{bindTaphaoping2['page']}}" data-index='1' data-maijia="{{goods['maijia']['title']}}">上1页</view>
+          <view class="mini-btt">{{bindTaphaoping2['page']}}</view>
+          <view class="mini-btt" style="{{bindTaphaoping2['total']/12>bindTaphaoping2['page']?'':'color:#ffffff'}};"
+            bindtap="{{bindTaphaoping2['total']/12>bindTaphaoping2['page']?'bindTaphaoping':''}}"
+            data-total="{{bindTaphaoping2['total']}}" data-page="{{bindTaphaoping2['page']}}" data-index='2'
+            data-maijia="{{goods['maijia']['title']}}">下1页</view>
+          <view class="mini-btt" bindtap="bindTaphaoping" data-total="{{bindTaphaoping2['total']}}"
+            data-page="{{bindTaphaoping2['page']}}" data-index='4' data-maijia="{{goods['maijia']['title']}}">随机
+          </view>
+        </view>
+      </view>
+      <view wx:else>此商家暂时还没有好评 还待加油哦！</view>
+    </view>
+  </view>
+</view>
+
+
+
+
+
+<!-- 底部悬浮栏 -->
+<!-- <text bindtap="toggleDialog">请选择购买数量</text> -->
+<view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
+  <view class="dialog__mask" bindtap="toggleDialog">点击这里继续浏览</view>
+  <!---背景色--->
+  <view class="dialog__container">
+    <view class="row">
+      <image bindtap="closeDialog" class="image-close" src="/image/delete.png"></image>
+      <image class="image-sku" src="https://1681.qunqing168.com{{goods.titlepic}}"></image>
+      <view class="column">
+        <text class="sku-price" decode="{{true}}">￥{{goods.price}} &nbsp;&nbsp;&nbsp;&nbsp; 总价： {{totalprice}}</text>
+        <text class="sku-title">库存 : {{goods.pmaxnum}} 件 销量 : {{goods.psalenum}} 件</text>
+        <text class="sku-title">商品编码：{{goods.productno}}</text>
+      </view>
+    </view>
+    <text class="border-line"></text>
+    <view class="row">
+      <text decode="{{true}}">&nbsp;&nbsp; 购买数量</text>
+      <view class="quantity-position">
+        <!-- <template is="quantity" data="{{ ...quantity1, componentId: 'quantity1' }}" /> -->
+        <view class="goods-box">
+          <!-- <view class="goods-operation">
+            <text class="goods-operation-add" bindtap="addCount">-</text>
+            <text class="goods-operation-num">数量 {{num}}</text>
+            <text class="goods-operation-add" bindtap="addCount">+</text>
+            <text class="goods-to-cart" bindtap="addToCart">加入购物车</text>
+            <image src="/image/cart1.png" class="goods-cart-img" bindtap="addToCart"></image>
+          </view> -->
+          <view class="cart-count-box">
+            <text class="cart-count-down" bindtap="minusCount">-</text>
+            <text class="cart-count-num">{{num}}</text>
+            <text class="cart-count-add" bindtap="addCount">+</text>
+          </view>
+
+        </view>
+      </view>
+    </view>
+    <text class="border-line"></text>
+    <view class="row">
+      <text decode="{{true}}">&nbsp;&nbsp; 色彩</text>
+      <view class="quantity-position">
+        红色 黄色 绿色 蓝色 黑色
+      </view>
+    </view>
+    <text class="border-line"></text>
+    <view class="row">
+      <text decode="{{true}}">&nbsp;&nbsp; 型号</text>
+      <view class="quantity-position">
+        xl xxl xxx
+      </view>
+    </view>
+    <text class="border-line"></text>
+
+    <button class="button-green" bindtap="addToCart" formType="submit">加入购物车</button>
+    <button class="button-red" formType="submit">立即购买</button>
+  </view>
+</view>
+
+<!-- 底部悬浮栏 -->
+
+<view wx:if="{{curIndex== 0}}" class="detail-nav">
+  <navigator url="../gwc/gwc" role="navigation">
+    <view class="carts-icon2 {{scaleCart?'on':''}}">
+      <image src="/image/cart2.png"></image>
+      <text class="carts-icon-num2" wx:if="{{hasCarts}}">{{totalNum}}</text>
+    </view>
+  </navigator>
+  <image bindtap="sjdp" data-dpsjhym="{{goods['maijia']['title']}}" 
+    src="https://1681.qunqing168.com{{isLike?'/d/file/2021-03-20/0ac5990689ce6243bd9dc3b9e7bd5dca.gif':'/d/file/2021-03-20/c185adf0b8df52fa662ea9dd7c51d3c6.gif'}}" />
+  <image bindtap="wdsc"
+    src="https://1681.qunqing168.com{{sfsc?'/d/file/2021-03-20/e51ea2d59fb9ed1ac32969b366e24a65.gif':'/d/file/2021-03-20/3c0fa63405cf013fe9b540af8f30c9cd.gif'}}" />
+  <!-- <view class="line_nav"><button open-type="contact">客服</button></view> -->
+  <view>
+    <view>
+      <button open-type="contact" class='pos' style="width:120rpx;"></button>
+      <image class='icon_kf'
+        src="https://1681.qunqing168.com{{isLike?'/d/file/2021-03-20/a3ddcaa9b1a34b625f23eb826d27e5c9.gif':'/d/file/2021-03-20/46717899243bde934a496cf140ca5fa0.gif'}}">
+      </image>
+    </view>
+  </view>
+
+  <button class="button-red" bindtap="toCar" formType="submit">购 买</button>
+
+</view>

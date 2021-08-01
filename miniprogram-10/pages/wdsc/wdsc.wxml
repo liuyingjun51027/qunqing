@@ -1,0 +1,62 @@
+<!--pages/wdsc/wdsc.wxml-->
+
+<scroll-view class="scroll_view" scroll-y bindscrolltolower="nextPage" bindscrolltoupper="onePage"
+    scroll-top='{{topNum}}' bindscroll="scrolltoupper">
+    <!-----触底触发事件----->
+
+
+
+    <scroll-view scroll-x="true" style="{{floorstatus?'position:fixed;background:#ffffff;':''}};">
+        <view class='tab'>
+            <view bindtap='tabFun2' data-index="0">
+                <text class='{{tabIndexx==0?"active":""}}' decode="{{true}}">&nbsp; 宝 贝 &nbsp;</text>
+            </view>
+            <view bindtap='tabFun2' data-index="1">
+                <text class='{{tabIndexx==1?"active":""}}' decode="{{true}}">&nbsp; 店 家 &nbsp;</text>
+            </view>
+            <view bindtap='tabFun2' data-index="2">
+                <text class='{{tabIndexx==2?"active":""}}' decode="{{true}}">&nbsp; 类 目 &nbsp;</text>
+            </view>
+            <view bindtap='tabFun2' data-index="3">
+                <text class='{{tabIndexx==3?"active":""}}' decode="{{true}}">&nbsp; 删 除 &nbsp;</text>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="main">
+        <text class="gwc-icon-num" wx:if="{{totalNum}}">{{totalNum}}</text>
+        <view hover-class="sc" class="item item1" wx:for="{{qunqing}}" wx:key="*this">
+            <image data-lj='{{dhlj[index]}}' bindtap='goto' src="{{item}}" class="item item1"></image>
+        </view>
+    </view>
+
+    <!---回到顶部---->
+    <image src='https://www.qunqing168.com/skin/default/images/sy-up.jpg' class='goTop' hidden='{{!floorstatus}}'
+        bindtap="goTop"></image>
+
+    <view class="content">
+
+
+        <block wx:for="{{listdata}}" wx:for-item="item" wx:key="index">
+            <view wx:for="{{item}}" wx:for-item="item" wx:if="{{item.id}}" class="itemx" wx:for-index="index"
+                wx:key="index">
+
+
+                <image src="https://1681.qunqing168.com{{item.titlepic}}" mode="aspectFill" data-details="{{item}}"
+                    bindtap="details"></image>
+                <view class="box">
+                    <view>
+                        <image src="https://1681.qunqing168.com{{item.maijia.titlepic}}"
+                            style="width:40rpx;height:40rpx;">
+                        </image> {{item.maijia.dpmc}}
+                    </view>
+                    <text>{{item.title}}￥:{{item.price}} 销量:{{item.psalenum}}</text>
+                    <view data-gid='{{item.id}}' data-attach="{{item}}" data-money='{{item.price}}' bindtap="getgwc">
+                        库存:{{item.pmaxnum}}<image src="/image/cart2.png" style="width:50rpx;height:50rpx;float:right;">
+                        </image>
+                    </view>
+                </view>
+
+            </view>
+        </block>
+    </view>
+</scroll-view>

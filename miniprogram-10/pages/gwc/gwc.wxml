@@ -1,0 +1,75 @@
+<!--pages/gwc/gwc.wxml-->
+<!-- <view class="cart-list" wx:for="{{carts}}" wx:key="{{index}}">
+    {{item}}
+
+    <view class="cart-list" wx:for="{{item}}" wx:key="{{index}}">
+        {{item}}
+        <view class="cart-list" wx:for="{{item}}" wx:key="{{index}}">
+            {{item}}
+        </view>
+    </view>
+</view>
+ -->
+<view class="main">
+    <block wx:if="{{hasList}}">
+        <view class="cart-box">
+            <view wx:for="{{carts}}" wx:for-index="idx" wx:for-item="itemm" style="margin-bottom:10rpx;border:5rpx solid #EFEFEF;">
+                <view style="background:#EFEFEF;">
+                    <icon wx:if="{{itemm.selected}}" type="success_circle" color="green" class="cart-pro-select"
+                        data-index="{{idx}}" bindtap="select" />
+                    <icon wx:else type="circle" color="green" class="cart-pro-select" data-index="{{idx}}"
+                        bindtap="select" />
+
+                    <image src="https://1681.qunqing168.com{{itemm['maijia']['titlepic']}}"
+                        style="width:50rpx;height:50rpx;" />
+                    {{itemm['maijia']['dpmc']}}
+                </view>
+
+                <view class="cart-list" wx:for="{{itemm['origin']}}" wx:key="{{index}}" style="background:#fff;">
+                    <!----前面的小圆圈 选中时为红色 没有选中时为灰色--->
+                    <icon wx:if="{{item.selected}}" type="success" color="red" data-index="{{index}}"
+                        data-index2="{{idx}}" class="cart-pro-select" bindtap="selectList" />
+                    <icon wx:else type="circle" class="cart-pro-select" data-index="{{index}}" data-index2="{{idx}}"
+                        bindtap="selectList" />
+                    <!----商品图片--->
+                    
+                        <image bindtap="details" data-details="{{item}}"  data-details2="{{itemm['maijia']}}" class="cart-thumb" src="{{item.image}}"></image>
+                       <!--  <navigator url="../details/details?id={{item.id}}"></navigator> -->
+                    <!----商品标题和价格--->
+                    <text bindtap="details" data-details="{{item}}"  data-details2="{{itemm['maijia']}}" class="cart-pro-name">{{item.title}}</text>
+                    <text class="cart-pro-price">￥{{item.price}}</text>
+                    <!----商品标题和价格--->
+                    <view class="cart-count-box">
+                        <text class="cart-count-down" bindtap="minusCount" data-obj="{{obj}}" data-index="{{index}}"
+                            data-index2="{{idx}}">-</text>
+                        <text class="cart-count-num">{{item.num}}</text>
+                        <text class="cart-count-add" bindtap="addCount" data-index="{{index}}"
+                            data-index2="{{idx}}">+</text>
+                    </view>
+                    <!----删除的xx--->
+                    <text class="cart-del" bindtap="deleteList" data-index="{{index}}" data-index2="{{idx}}">×</text>
+
+                </view>
+            </view>
+        </view>
+
+
+
+        <view class="cart-footer">
+            <!----商品全选不全选的情况小圆圈 全选圆圈内有个√勾 不全选没有√勾--->
+            <icon wx:if="{{selectAllStatus}}" type="success_circle" color="#fff" class="total-select"
+                bindtap="selectAll" />
+            <icon wx:else type="circle" color="#fff" class="total-select" bindtap="selectAll" />
+
+            <view class="order-icon">
+                <!-- <navigator url="../orders/orders"></navigator> -->
+                <image src="/image/icon3.png" bindtap="orders"></image>
+            </view>
+            <text>全选</text> <text bindtap="qinkongAll" style="width:120rpx;margin-left:50rpx;">清空</text>
+            <text class="cart-toatl-price">￥{{totalPrice}}</text>
+        </view>
+    </block>
+    <view wx:else>
+        <view class="cart-no-data">购物车是空的哦~</view>
+    </view>
+</view>

@@ -1,0 +1,328 @@
+<block wx:if="{{haoping}}">
+    <scroll-view class="scroll_view" scroll-y bindscrolltolower="nextPage2" bindscrolltoupper="onePage"
+        scroll-top='{{topNum}}' bindscroll="scrolltoupper">
+        <!-----触底触发事件----->
+
+        <!-- <view class="search">
+            <navigator url="../search/search">
+                <view class="search-text">
+                    <icon class="search-icon" type="search" size="14"></icon>搜 索
+                </view>
+            </navigator>
+        </view> -->
+
+
+
+        <view class="martop flex-item3 bor">
+            <view style="width:100%;height:auto;display: flex;flex-direction: row;justify-content: center;">
+                <view class="flex-item4 bor">
+                    <image src="https://1681.qunqing168.com/{{mjuser['userpic']}}" style="width:130rpx;height:130rpx;">
+                    </image>
+                </view>
+                <view class="goods-box4 bor">
+                    <view style="height:auto;display: flex;padding:0 10rpx;">
+                        <view style="width:90rpx;">服务：</view>
+                        <view style="width:300rpx;"><progress percent="{{bindTaphaoping2['fwtd']}}" show-info
+                                stroke-width="13" />
+                        </view>
+                    </view>
+                    <view style="height:auto;display: flex;padding:0 10rpx;">
+                        <view style="width:90rpx;">质量：</view>
+                        <view style="width:300rpx;"><progress percent="{{bindTaphaoping2['spzl']}}" show-info
+                                stroke-width="13" />
+                        </view>
+                    </view>
+                    <view style="height:auto;display: flex;padding:0 10rpx;">
+                        <view style="width:90rpx;">速度：</view>
+                        <view style="width:300rpx;"><progress percent="{{bindTaphaoping2['kdsd']}}" show-info
+                                stroke-width="13" />
+                        </view>
+                    </view>
+                </view>
+                <view class="flex-item3 bor">
+                    <view style="width:130rpx;height:120rpx;">
+                        <navigator url="../search/search">
+
+                            <icon class="search-icon" type="search" size="28"></icon>
+                            <view class="search-text">搜 索</view>
+
+
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+            <view style="width:100%;height:auto;display: flex;flex-direction: row;justify-content: center;">
+                <view class="flex-item3">
+                    <button class="search-text" style="width:300rpx;">
+                        <image bindtap=""
+                            src="https://1681.qunqing168.com{{isLike?'/d/file/2021-03-20/e51ea2d59fb9ed1ac32969b366e24a65.gif':'/d/file/2021-03-20/3c0fa63405cf013fe9b540af8f30c9cd.gif'}}"
+                            style="width:30rpx;height:30rpx;" />({{bindTaphaoping2['num']}})收 藏</button>
+                </view>
+                <view class="flex-item3">
+                    <button class="search-text" open-type="share" style="width:185rpx;">分享</button>
+                </view>
+                <view class="flex-item3">
+                    <button open-type="contact" class='search-text' style="width:185rpx;">客服</button>
+                </view>
+            </view>
+
+            <view class="goods-box3" style="margin-bottom:10rpx;" bindtap="bindTaphaoping" data-curIndex="{{!haoping}}"
+                data-index="3" data-maijia="{{dpsjhym}}" data-hpzt="" data-ksfyt="0">
+
+                <view style="width:100%;height:auto;display: flex;flex-direction: row;justify-content: center;"
+                    bindtap="bindTaphaoping" data-curIndex="{{!haoping}}" data-index="3" data-maijia="{{dpsjhym}}"
+                    data-hpzt="" data-ksfyt="0">
+                    <view class="flex-item3 bor">
+                        全部({{bindTaphaoping2['num']}})</view>
+                    <view class="flex-item3 bor">
+                        好评({{bindTaphaoping2['num1']}})
+                    </view>
+                    <view class="flex-item3 bor">
+                        中评({{bindTaphaoping2['num2']}})
+                    </view>
+                    <view class="flex-item3 bor">
+                        差评({{bindTaphaoping2['num3']}})
+                    </view>
+                    <view class="flex-item3 bor">
+                        有图({{bindTaphaoping2['num4']}})</view>
+                </view>
+            </view>
+        </view>
+
+        <scroll-view scroll-x="true" style="{{floorstatus?'position:fixed;top:0;background:#ffffff;':''}};">
+            <view class='tab'>
+                <view><text class='{{tabIndex==99?"active":""}}' bindtap='tabFun' data-index="99" data-lj=''
+                        data-bdlm="0">全 部</text></view>
+                <block wx:for="{{sjdp}}" wx:key="index">
+                    <view bindtap='tabFun' data-index="{{index}}" data-bdlm="{{item['bdlm']}}">
+                        <text class='{{tabIndex==index?"active":""}}' decode="{{true}}">&nbsp; {{item['dplb']}}</text>
+                    </view>
+                </block>
+
+            </view>
+        </scroll-view>
+        <scroll-view scroll-x="true" style="{{floorstatus?'position:fixed;top:7vh;background:#ffffff;':''}};">
+            <view class='tab'>
+                <view bindtap='tabFun2' data-index="0"><text class='{{tabIndexx==0?"active":""}}'
+                        decode="{{true}}">&nbsp; 全 部 &nbsp;</text></view>
+                <view bindtap='tabFun2' data-index="1"><text class='{{tabIndexx==1?"active":""}}'
+                        decode="{{true}}">&nbsp; 销 量 &nbsp;</text></view>
+                <view bindtap='tabFun2' data-index="2"><text class='{{tabIndexx==2?"active":""}}'
+                        decode="{{true}}">&nbsp; 新 品 &nbsp;</text></view>
+                <view bindtap='tabFun2' data-index="3"><text class='{{tabIndexx==3?"active":""}}'
+                        decode="{{true}}">&nbsp; 价 格 &nbsp;</text></view>
+                <!-- <view bindtap='tabFun2' data-index="4"><text class='{{tabIndexx==4?"active":""}}' decode="{{true}}">&nbsp; 秒 杀 &nbsp;</text></view> -->
+            </view>
+        </scroll-view>
+        <view class="main">
+            <text class="gwc-icon-num" wx:if="{{totalNum}}">{{totalNum}}</text>
+            <view hover-class="sc" class="item item1" wx:for="{{qunqing}}" wx:key="*this">
+                <image data-lj='{{dhlj[index]}}' bindtap='goto' src="{{item}}" class="item item1"></image>
+            </view>
+        </view>
+
+        <!---回到顶部---->
+        <image src='https://www.qunqing168.com/skin/default/images/sy-up.jpg' class='goTop' hidden='{{!floorstatus}}'
+            bindtap="goTop"></image>
+
+        <view class="content">
+
+
+            <block wx:for="{{listdata}}" wx:for-item="item" wx:key="index">
+                <block wx:for="{{item}}" wx:for-item="list" wx:key="index">
+                    <view class="martop flex-item3 bor">
+                        <image class='left' src="https://1681.qunqing168.com{{list[0]['maijia']['titlepic']}}"
+                            style="width: 60rpx;height:60rpx;border-radius:50%;"></image>
+                        <view>
+                            <text class="goods-price">{{list[0]['maijia']['dpmc']}}</text>
+                        </view>
+
+                    </view>
+                    <view wx:for="{{list}}" wx:if="{{item.id}}" class="itemx" wx:for-index="index" wx:key="index">
+
+                        <image src="https://1681.qunqing168.com{{item.titlepic}}" mode="aspectFill"
+                            data-details="{{list[index]}}" bindtap="details"></image>
+                        <!--  <navigator url="../details/details" role="navigation"></navigator> -->
+                        <!-- <view>
+                        <image src="https://1681.qunqing168.com{{item.maijia.titlepic}}"
+                            style="width:40rpx;height:40rpx;">
+                        </image> {{item.maijia.dpmc}}
+                    </view> -->
+                        <text>{{item.title}}￥:{{item.price}} 销量:{{item.psalenum}}</text>
+                        <view data-gid='{{item.id}}' data-attach="{{item}}" data-money='{{item.price}}'
+                            bindtap="getgwc">
+                            库存:{{item.pmaxnum}}<image src="/image/cart2.png"
+                                style="width:50rpx;height:50rpx;float:right;">
+                            </image>
+                        </view>
+
+                    </view>
+                </block>
+            </block>
+        </view>
+    </scroll-view>
+</block>
+<block wx:else>
+    <view class="martop flex-item3 bor">
+        <text class="goods-price" bindtap="fanhui" data-curIndex="{{!haoping}}" data-index="3" data-maijia="{{dpsjhym}}"
+            data-hpzt="" data-ksfyt="0"> 返回 》》</text>
+    </view>
+    <view class="goods-box3" style="margin-bottom:120rpx;">
+        <!-- <view style="height:auto;display: flex;padding:0 10rpx;">
+            <view style="width:150rpx;">服务态度：</view>
+            <view style="width:550rpx;"><progress percent="{{bindTaphaoping2['fwtd']}}" show-info stroke-width="13" />
+            </view>
+        </view>
+        <view style="height:auto;display: flex;padding:0 10rpx;">
+            <view style="width:150rpx;">商品质量：</view>
+            <view style="width:550rpx;"><progress percent="{{bindTaphaoping2['spzl']}}" show-info stroke-width="13" />
+            </view>
+        </view>
+        <view style="height:auto;display: flex;padding:0 10rpx;">
+            <view style="width:150rpx;">快递速度：</view>
+            <view style="width:550rpx;"><progress percent="{{bindTaphaoping2['kdsd']}}" show-info stroke-width="13" />
+            </view>
+        </view> -->
+        <view style="width:100%;height:auto;display: flex;flex-direction: row;justify-content: center;">
+            <view class="flex-item3 bor {{hpzt ==='' && ksfyt===0?'red':''}}" bindtap="bindTaphaoping" data-index="33"
+                data-hpzt="" data-ksfyt="0" data-maijia="{{dpsjhym}}">
+                全部({{bindTaphaoping2['num']}})</view>
+            <view class="flex-item3 bor {{hpzt ==='好评' && ksfyt===0?'red':''}}" bindtap="bindTaphaoping" data-index="33"
+                data-hpzt="好评" data-ksfyt="0" data-maijia="{{dpsjhym}}">
+                好评({{bindTaphaoping2['num1']}})
+            </view>
+            <view class="flex-item3 bor {{hpzt ==='中评' && ksfyt===0?'red':''}}" bindtap="bindTaphaoping" data-index="33"
+                data-hpzt="中评" data-ksfyt="0" data-maijia="{{dpsjhym}}">
+                中评({{bindTaphaoping2['num2']}})
+            </view>
+            <view class="flex-item3 bor {{hpzt ==='差评' && ksfyt===0?'red':''}}" bindtap="bindTaphaoping" data-index="33"
+                data-hpzt="差评" data-ksfyt="0" data-maijia="{{dpsjhym}}">
+                差评({{bindTaphaoping2['num3']}})
+            </view>
+            <view class="flex-item3 bor {{hpzt ==='' && ksfyt===1?'red':''}}" bindtap="bindTaphaoping" data-index="33"
+                data-hpzt="" data-ksfyt="1" data-maijia="{{dpsjhym}}">
+                有图({{bindTaphaoping2['num4']}})</view>
+        </view>
+
+        <block wx:for="{{bindTaphaoping}}" wx:key="index">
+            <block wx:if="{{bindTaphaoping2['success']}}">
+                <view class="goods-content">
+                    <view style="width:100%;height:1px;background:green"></view>
+                    <view wx:for="{{bindTaphaoping[index]}}" wx:key="index"
+                        style="width:100%;height:auto;margin-bottom:10rpx;text-align:left;">
+
+                        <view>订单号{{item['ddno']}}订单ID{{item['ddid']}}</view>
+                        <view>
+                            <!-- 卖家:{{item['maijia']}} -->会员:{{item['truename']}}
+                            <!-- 综合好评({{item['fwtd']*1+item['spzl']*1+item['kdsd']*1}}颗★) -->
+                        </view>
+                        <view>
+                            态度:
+                            <text wx:if="{{item['fwtd']==5}}" style="color:red;">★★★★★</text>
+                            <text wx:elif="{{item['fwtd']==4}}" style="color:red;">★★★★</text>
+                            <text wx:elif="{{item['fwtd']==3}}" style="color:red;">★★★</text>
+                            <text wx:elif="{{item['fwtd']==2}}" style="color:green;">★★</text>
+                            <text wx:else="{{item['fwtd']==1}}" style="color:green;">★</text>
+
+
+                            质量:
+                            <text wx:if="{{item['spzl']==5}}" style="color:red;">★★★★★</text>
+                            <text wx:elif="{{item['spzl']==4}}" style="color:red;">★★★★</text>
+                            <text wx:elif="{{item['spzl']==3}}" style="color:red;">★★★</text>
+                            <text wx:elif="{{item['spzl']==2}}" style="color:green;">★★</text>
+                            <text wx:else="{{item['spzl']==1}}" style="color:green;">★</text>
+
+
+                            快递:
+                            <text wx:if="{{item['kdsd']==5}}" style="color:red;">★★★★★</text>
+                            <text wx:elif="{{item['kdsd']==4}}" style="color:red;">★★★★</text>
+                            <text wx:elif="{{item['kdsd']==3}}" style="color:red;">★★★</text>
+                            <text wx:elif="{{item['kdsd']==2}}" style="color:green;">★★</text>
+                            <text wx:else="{{item['kdsd']==1}}" style="color:green;">★</text>
+
+
+
+                            <text wx:if="{{item['hpjx']==0}}"> 加星:
+                                <text wx:if="{{item['hpjx']==5}}" style="color:red;">★★★★★</text>
+                                <text wx:elif="{{item['hpjx']==4}}" style="color:red;">★★★★</text>
+                                <text wx:elif="{{item['hpjx']==3}}" style="color:red;">★★★</text>
+                                <text wx:elif="{{item['hpjx']==2}}" style="color:green;">★★</text>
+                                <text wx:else="{{item['hpjx']==1}}" style="color:green;">★</text>
+                            </text>
+
+                        </view>
+
+                        <!-- <view>好评状态{{item['hpzt']}}好评显示{{item['hpxs']}}</view> -->
+                        <block wx:for="{{item['pic']}}" wx:key="*this">
+                            <image style="width:100rpx;height:100rpx;"
+                                src="https://1681.qunqing168.com{{item['titlepic']}}" bindtap="spxqy"
+                                data-lmid="{{item['lmid']}}" data-lmzid="{{item['lmzid']}}" data-dldp="{{item['dldp']}}"
+                                data-dpsjhym="{{item['dpsjhym']}}"></image>
+
+                        </block>
+                        <view>买家初评:{{item['mjcp']}}</view>
+                        <view wx:if="{{item['sjzp']}}">商家追评:{{item['sjzp']}}</view>
+                        <view wx:if="{{item['ksfyt']==1}}" style="height:auto;display: flex;padding:0 10rpx;">
+                            <view
+                                style="width:100rpx;height:100rpx;margin:2rpx;justify-content: center;display: flex;line-height: 100rpx;">
+                                <text>买家图:</text></view>
+                            <view wx:for="{{bindTaphaoping2['kft'][index]}}" wx:key="index">
+                                <image wx:if="{{item['kpic1']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                                    src="https://1681.qunqing168.com{{item['kpic1']}}" />
+                                <image wx:if="{{item['kpic2']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                                    src="https://1681.qunqing168.com{{item['kpic2']}}" />
+                                <image wx:if="{{item['kpic3']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                                    src="https://1681.qunqing168.com{{item['kpic3']}}" />
+                                <image wx:if="{{item['kpic4']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                                    src="https://1681.qunqing168.com{{item['kpic4']}}" />
+                                <image wx:if="{{item['kpic5']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                                    src="https://1681.qunqing168.com{{item['kpic5']}}" />
+                            </view>
+                        </view>
+                        <view wx:if="{{item['ssfyt']==1}}" style="height:auto;display: flex;padding:0 10rpx;">
+                            <view
+                                style="width:100rpx;height:100rpx;margin:2rpx;justify-content: center;display: flex;line-height: 100rpx;">
+                                商家图:</view>
+                            <view wx:for="{{bindTaphaoping2['sft'][index]}}">
+                                <image wx:if="{{item['kpic1']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                                    src="https://1681.qunqing168.com{{item['kpic1']}}" />
+                                <image wx:if="{{item['kpic2']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                                    src="https://1681.qunqing168.com{{item['kpic2']}}" />
+                                <image wx:if="{{item['kpic3']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                                    src="https://1681.qunqing168.com{{item['kpic3']}}" />
+                                <image wx:if="{{item['kpic4']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                                    src="https://1681.qunqing168.com{{item['kpic4']}}" />
+                                <image wx:if="{{item['kpic5']}}" style="width:100rpx;height:100rpx;margin:2rpx;"
+                                    src="https://1681.qunqing168.com{{item['kpic5']}}" />
+                            </view>
+                        </view>
+                        <view>{{item['newstime']}}</view>
+                        <view style="width:100%;height:1px;background:green"></view>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <view wx:if="{{hpindex==bindTaphaoping2['page']-1}}">
+            <view wx:if="{{bindTaphaoping2['total']>12}}" class="flex-itemm borr">
+                <view class="mini-btt">{{bindTaphaoping2['total']}}</view>
+                <view class="mini-btt" style="{{bindTaphaoping2['page']>1?'':'color:#ffffff'}};"
+                    bindtap="{{bindTaphaoping2['page']>1?'bindTaphaoping':''}}" data-index='3'
+                    data-maijia="{{dpsjhym}}">首页</view>
+                <view class="mini-btt" style="{{bindTaphaoping2['page']>1?'':'color:#ffffff'}};"
+                    bindtap="{{bindTaphaoping2['page']>1?'bindTaphaoping':''}}"
+                    data-total="{{bindTaphaoping2['total']}}" data-page="{{bindTaphaoping2['page']}}" data-index='1'
+                    data-maijia="{{dpsjhym}}">上1页</view>
+                <view class="mini-btt">{{bindTaphaoping2['page']}}</view>
+                <view class="mini-btt"
+                    style="{{bindTaphaoping2['total']/12>bindTaphaoping2['page']?'':'color:#ffffff'}};"
+                    bindtap="{{bindTaphaoping2['total']/12>bindTaphaoping2['page']?'bindTaphaoping':''}}"
+                    data-total="{{bindTaphaoping2['total']}}" data-page="{{bindTaphaoping2['page']}}" data-index='2'
+                    data-maijia="{{dpsjhym}}">下1页</view>
+                <view class="mini-btt" bindtap="bindTaphaoping" data-total="{{bindTaphaoping2['total']}}"
+                    data-page="{{bindTaphaoping2['page']}}" data-index='4' data-maijia="{{dpsjhym}}">随机
+                </view>
+            </view>
+        </view>
+        <view wx:else>此商家暂时还没有好评 还待加油哦！</view>
+    </view>
+</block>

@@ -1,0 +1,87 @@
+<!--pages/index/index.wxml-->
+<!------text>pages/index/index.wxml</text-------->
+<!-- <import src="/template/quantity/index.wxml" /> -->
+
+
+
+<scroll-view class="scroll_view" scroll-y bindscrolltolower="nextPage" bindscrolltoupper="onePage"
+    scroll-top='{{topNum}}' bindscroll="scrolltoupper">
+    <!-----触底触发事件----->
+
+
+
+    <view class="custom-bar" style="height:{{navHeight}}px;">
+        <!----顶端搜索框实现代码-->
+        <view class="search-group2"
+            style="margin-top:{{searchMarginTop}}px; height: {{searchHeight}}px;width:65px;box-sizing: border-box;"
+            data-lj='../category/category' bindtap='goto'>
+            <image src="https://1681.qunqing168.com/d/cn/fl622.gif" />
+        </view>
+
+        <navigator url="../search/search" style="width: {{searchWidth-60}}px;">
+            <view class="search-group"
+                style="margin-top:{{searchMarginTop}}px; height: {{searchHeight}}px;width: {{searchWidth-70}}px;box-sizing: border-box;">
+
+                <icon class="search-icon" type="search" size="14"></icon>搜 索
+            </view>
+        </navigator>
+    </view>
+
+    <swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true"
+        style="margin-top:130rpx;">
+        <block wx:for="{{imgUrls}}" wx:key="*this">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image" width="100%" />
+            </swiper-item>
+        </block>
+    </swiper>
+
+
+
+
+
+
+    <view class="main">
+        <text class="gwc-icon-num" wx:if="{{totalNum}}">{{totalNum}}</text>
+        <view hover-class="sc" class="item item1" wx:for="{{qunqing}}" wx:key="*this">
+            <!--navigator url="{{dhlj[index]}}"  hover-class="navigator-hover"--->
+            <image data-lj='{{dhlj[index]}}' bindtap='goto' src="{{item}}" class="item item1"></image>
+
+            <!--/navigator--->
+        </view>
+
+
+    </view>
+
+
+
+
+
+    <!---回到顶部---->
+    <image src='https://www.qunqing168.com/skin/default/images/sy-up.jpg' class='goTop' hidden='{{!floorstatus}}'
+        bindtap="goTop"></image>
+
+    <view class="content">
+        <block wx:for="{{listdata}}" wx:for-item="list" wx:key="index">
+            <!-- <block wx:for="{{item}}" wx:for-item="list"> -->
+
+            <view wx:for="{{list}}" wx:if="{{item.id}}" class="itemx" wx:for-index="index" wx:key="index">
+
+                <image src="https://1681.qunqing168.com{{item.titlepic}}" mode="aspectFit"
+                    data-details="{{list[index]}}" bindtap="details"></image>
+                <!--  <navigator url="../details/details" role="navigation"></navigator> -->
+                <view>
+                    <image src="https://1681.qunqing168.com{{item.maijia.titlepic}}" style="width:40rpx;height:40rpx;">
+                    </image> {{item.maijia.dpmc}}
+                </view>
+                <text>{{item.title}}</text>
+                <view data-gid='{{item.id}}' data-attach="{{item}}" data-money='{{item.price}}' bindtap="getgwc">
+                    库存:{{item.pmaxnum}}<image src="/image/cart2.png" style="width:50rpx;height:50rpx;float:right;">
+                    </image>
+                </view>
+
+            </view>
+            <!-- </block> -->
+        </block>
+    </view>
+</scroll-view>
